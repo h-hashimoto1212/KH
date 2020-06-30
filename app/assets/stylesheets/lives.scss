@@ -1,0 +1,48 @@
+.lives{
+  margin: 15px auto;
+  width: 100%;
+  h5{
+    font-size: 20px;
+    margin: 5px;
+    justify-content: start;
+  }
+  &_info{
+    margin: 10px 25%;
+    &_title{
+      display: flex;
+      .date{
+        font-size: 15px;
+        width: 150px;
+      }
+      h3, a{
+        color: #ffffff;
+        font-size: 20px;
+        margin-left: 25px;
+      }
+    }
+    &_sub{
+      display: flex;
+      &_img{
+        height: 100px;
+        width: 150px;
+        font-size: 75px;
+        font-family: 'Impact';
+        text-align: center;
+      }
+      &_text{
+        margin: auto;
+        // justify-content: center;
+        // align-items: center;
+      }
+    }
+  }
+  .time{
+    font-size: 15px;
+    margin-left: auto;
+  }
+}
+
+.forms{
+  background-color: #ffffff;
+
+}

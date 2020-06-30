@@ -1,0 +1,17 @@
+.lives
+  -if @y2020_lives 
+    %h1 2020
+    - @y2020_lives.each do |live|
+      .lives
+        = live.date.strftime("%-m月%-d日 (%a)") if live.date
+        %h3 #{live.title}
+        %span #{live.description}
+        .time
+          Open:
+          = live.open.strftime("%-H:%M") if live.open
+          Start:
+          = live.start.strftime("%-H:%M") if live.start
+
+
+
+

@@ -1,0 +1,85 @@
+%body
+  .top /
+  #title_bg
+    .logo
+      = image_tag 'guitar1.svg', alt: '', height: '50px'
+      %h1 KH
+    #loader loading
+  .modal
+    .modal_content
+      %p.modal_close X
+      .modal_item
+  .contents
+    %section.bg_video
+      = video_tag 'W0Enw7zhD5NQDbJg.mp4', autoplay: true, loop: true, muted: true, playsinline: true
+    %header
+      .header_left
+        .logo
+          = image_tag 'guitar1.svg', alt: '', height: '50px'
+        .header_left_title
+          %h1
+            Kota Hashimoto
+            %span Official Website
+      %nav
+        %ul
+          %li
+            %a.home_button{:href => "javascript:void(0);"} home
+          %li
+            %a.news_button{:href => "javascript:void(0);"} news
+          %li
+            %a.about_button{:href => "javascript:void(0);"} about
+          %li
+            %a.works_button{:href => "javascript:void(0);"} works
+    %main
+      .bg_black
+      .home
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+      .news
+        %h2 News
+        %p.paratext
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem hic eligendi nesciunt animi omnis! Officiis, est accusamus? Et explicabo repellendus impedit optio eos vero tempore earum. Voluptates consequatur voluptatem repellendus.
+        %p.paratext
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem hic eligendi nesciunt animi omnis! Officiis, est accusamus? Et explicabo repellendus impedit optio eos vero tempore earum. Voluptates consequatur voluptatem repellendus.
+        %p.paratext
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem hic eligendi nesciunt animi omnis! Officiis, est accusamus? Et explicabo repellendus impedit optio eos vero tempore earum. Voluptates consequatur voluptatem repellendus.
+        %p.paratext
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem hic eligendi nesciunt animi omnis! Officiis, est accusamus? Et explicabo repellendus impedit optio eos vero tempore earum. Voluptates consequatur voluptatem repellendus.
+      = render partial: 'home/lives' 
+      .about
+        %h2 About
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+        %p テキストテキストテキスト
+      .works
+        %h2 Works
+        %p.modal_open{"data-target": "wGWlopL2Ffo"}
+          = image_tag 'http://img.youtube.com/vi/wGWlopL2Ffo/hqdefault.jpg'
+        %p.modal_open{"data-target": "8I_ZV_BLOHU"}
+          = image_tag 'http://img.youtube.com/vi/8I_ZV_BLOHU/hqdefault.jpg'
+        %p.modal_open{"data-target": "G4DZyQw2HZs"}
+          = image_tag 'http://img.youtube.com/vi/G4DZyQw2HZs/hqdefault.jpg'
+    %footer
+      = link_to('https://twitter.com/kota_h0307', target: :_blank) do
+        %i.fab.fa-twitter
+      = link_to("https://www.instagram.com/explore/tags/%E6%A9%8B%E6%9C%AC%E5%AD%9D%E5%A4%AA/", target: :_blank) do
+        %i.fab.fa-instagram
+      = link_to('https://www.facebook.com/kota.hashimoto.79', target: :_blank) do
+        %i.fab.fa-facebook-square
+      %p ©Kota Hashimoto all rights reserved.
