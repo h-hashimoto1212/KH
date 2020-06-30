@@ -1,0 +1,21 @@
+.forms{
+  h1{
+    font-size: 20px;
+  }
+  padding: 25px;
+  background-color: #ffffff;
+  .title, .description, .image, .link{
+    display: flex;
+    flex-direction: column;
+    textarea{
+      padding: 5px;
+      min-height: 150px;
+    }
+    input{
+      padding: 5px;
+    }
+  }
+  .destroy{
+    margin-top: 25px;
+  }
+}

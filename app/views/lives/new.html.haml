@@ -1,21 +1,2 @@
-
-= form_with scope: :live, url: lives_path, local: true do |f|
-  .forms
-    .date
-      = f.label :date
-      = f.date_select :date,{ default: Time.zone.now, start_year: Time.zone.now.year, use_month_numbers: true, minute_step: 15}
-    .time
-      = f.label :open
-      = f.time_select :open,{default: Time.zone.now, minute_step: 15}
-      = f.label :start
-      = f.time_select :start,{default: Time.zone.now, minute_step: 15}
-    .title
-      = f.label :title
-      = f.text_field :title 
-    .description
-      = f.label :description
-      = f.text_area :description
-    .link
-      = f.label :link
-      = f.text_field :link
-    = f.submit
+%h1.forms New Entry
+= render partial: 'lives/form'
