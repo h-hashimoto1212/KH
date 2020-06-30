@@ -1,0 +1,9 @@
+.mail_name
+  = @inquiry.name
+  様からメールが届きました
+.mail_contact
+  %p 連絡先:
+  = @inquiry.email
+.mail_text
+  %h5 問合せ内容:
+  = @inquiry.message

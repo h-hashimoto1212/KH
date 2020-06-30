@@ -1,0 +1,12 @@
+= form_with model: Inquiry.new, local: true do |f|
+  .inquiry_form
+    .inquiry_form_name
+      = f.label :name, 'name'
+      = f.text_field :name
+    .inquiry_form_email
+      = f.label :email, 'e-mail'
+      = f.email_field :email
+    .inquiry_form_message
+      = f.label :message, 'message'
+      = f.text_area :message
+    = f.submit 'send'
