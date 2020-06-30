@@ -1,0 +1,29 @@
+= form_with scope: :live, model: @live, local: true do |f|
+  .forms
+    .date
+      = f.label :date
+      = f.date_select :date,{ default: Time.zone.now, start_year: Time.zone.now.year, use_month_numbers: true, minute_step: 15}
+    .time
+      = f.label :open
+      = f.time_select :open,{default: Time.zone.now, minute_step: 15}
+      = f.label :start
+      = f.time_select :start,{default: Time.zone.now, minute_step: 15}
+    .title
+      = f.label :title
+      = f.text_field :title 
+    .description
+      = f.label :description
+      = f.text_area :description
+    .image
+      = f.label :image
+      = f.file_field :image
+    - if local_assigns[:edit_flag].present?
+      = f.label :remove_image, 'Remove Image'
+      = f.check_box :remove_image
+    .link
+      = f.label :link
+      = f.text_field :link
+    = f.submit
+    - if local_assigns[:edit_flag].present?
+      .destroy 
+        = link_to 'DESTROY', live_path(params[:id]), method: :delete
