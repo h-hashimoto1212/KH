@@ -1,7 +1,10 @@
 class LivesController < ApplicationController
+  before_action :set_tomorrow
 
   def index
-    @y2020_lives = Live.where("YEAR(date) = 2020")
+    @lives = Live.all
+    @past_lives = @lives.where("date < ?", @tomorrow).order(date: 'DESC')
+    @future_lives = @lives.where("date > ?", @tomorrow).order(:date)
   end
 
   def new
@@ -42,5 +45,11 @@ class LivesController < ApplicationController
   private
     def live_params
       params.require(:live).permit(:date, :open, :start, :title, :description, :link, :image, :remove_image)
+    end
+
+    def set_tomorrow
+      require "date"
+      t = Date.today + 1
+      @tomorrow = t.to_time
     end
 end

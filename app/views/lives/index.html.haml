@@ -1,17 +1,54 @@
 .lives
-  -if @y2020_lives 
-    %h1 2020
-    - @y2020_lives.each do |live|
-      .lives
-        = live.date.strftime("%-m月%-d日 (%a)") if live.date
-        %h3 #{live.title}
-        %span #{live.description}
-        .time
-          Open:
-          = live.open.strftime("%-H:%M") if live.open
-          Start:
-          = live.start.strftime("%-H:%M") if live.start
-
-
+  %h2 Live Information
+  .lives_future
+    %p UPCOMING
+    -if @future_lives.where("YEAR(date) = 2020").present?
+      %h5 2020
+      - @future_lives.where("YEAR(date) = 2020").each do |live|
+        .lives_info
+          .lives_info_title
+            %p.date
+              = live.date.strftime("%-m月%-d日 (%a)") if live.date
+            - if live.link
+              = link_to live.link, target: :blank do
+                %h3 #{live.title}
+            - else
+              %h3 #{live.title}
+          .lives_info_sub
+            .lives_info_sub_img
+              - if live.image.url
+                = image_tag live.image.url , alt: '', height: '100px', width: '150px'
+              - else
+                LIVE
+            .lives_info_sub_text
+              = live.description
+              .lives_info_text_time
+                = "Open: #{live.open.strftime("%-H:%M")}" if live.open
+                = "Start: #{live.start.strftime("%-H:%M")}" if live.start
+  .lives_past
+    %p PAST
+    -if @past_lives.where("YEAR(date) = 2020").present?
+      %h5 2020
+      - @past_lives.where("YEAR(date) = 2020").each do |live|
+        .lives_info
+          .lives_info_title
+            %p.date
+              = live.date.strftime("%-m月%-d日 (%a)") if live.date
+            - if live.link
+              = link_to live.link, target: :blank do
+                %h3 #{live.title}
+            - else
+              %h3 #{live.title}
+          .lives_info_sub
+            .lives_info_sub_img
+              - if live.image.url
+                = image_tag live.image.url , alt: '', height: '100px', width: '150px'
+              - else
+                LIVE
+            .lives_info_sub_text
+              = live.description
+              .lives_info_text_time
+                = "Open: #{live.open.strftime("%-H:%M")}" if live.open
+                = "Start: #{live.start.strftime("%-H:%M")}" if live.start
 
 
