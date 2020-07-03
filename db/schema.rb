@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_01_200819) do
+ActiveRecord::Schema.define(version: 2020_07_03_010345) do
+
+  create_table "details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "live_id", null: false
+    t.date "date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.time "open_time"
+    t.time "start_time"
+    t.text "ex_description"
+    t.string "place"
+    t.string "place_link"
+    t.index ["live_id"], name: "index_details_on_live_id"
+  end
+
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "image"
+    t.bigint "live_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["live_id"], name: "index_images_on_live_id"
+  end
 
   create_table "inquiries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -21,24 +42,13 @@ ActiveRecord::Schema.define(version: 2020_07_01_200819) do
   end
 
   create_table "lives", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.date "date"
-    t.time "open"
-    t.time "start"
     t.string "title", null: false
     t.text "description"
-    t.string "image"
-    t.string "link"
+    t.string "title_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "occasions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "live_id", null: false
-    t.date "date", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["live_id"], name: "index_occasions_on_live_id"
-  end
-
-  add_foreign_key "occasions", "lives", on_delete: :cascade
+  add_foreign_key "details", "lives", on_delete: :cascade
+  add_foreign_key "images", "lives", on_delete: :cascade
 end

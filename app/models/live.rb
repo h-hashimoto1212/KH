@@ -1,3 +1,4 @@
 class Live < ApplicationRecord
-  mount_uploader :image, ImageUploader
+  has_many :images, dependent: :destroy
+  has_many :details, dependent: :destroy
 end

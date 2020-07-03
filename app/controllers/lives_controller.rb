@@ -2,20 +2,24 @@ class LivesController < ApplicationController
   before_action :set_tomorrow
 
   def index
-    @lives = Live.all
-    @past_lives = @lives.where("date < ?", @tomorrow).order(date: 'DESC')
-    @future_lives = @lives.where("date > ?", @tomorrow).order(:date)
+    @lives = Live.eager_load(:details)
+    @past_lives = @lives.where("details.date < ?", @tomorrow).order("details.date DESC")
+    @future_lives = @lives.where("details.date > ?", @tomorrow).order("details.date")
+  end
+
+  def show
+    
   end
 
   def new
-    @live = Live.new(params[:live])
+    @live_form = LiveForm.new
   end
 
   def create
-    @live = Live.new(live_params)
+    @live_form = LiveForm.new(live_params)
 
-    if @live.save
-      redirect_to action: 'main', controller: 'home'
+    if @live_form.save
+      redirect_to action: 'index'
     else
       flash.now[:alert] = 'unable to save'
       render :new
@@ -24,6 +28,7 @@ class LivesController < ApplicationController
 
   def edit
     @live = Live.find(params[:id])
+    @live.details.build
   end
 
   def update
@@ -44,7 +49,11 @@ class LivesController < ApplicationController
 
   private
     def live_params
-      params.require(:live).permit(:date, :open, :start, :title, :description, :link, :image, :remove_image)
+      params.require(:live_form).permit(
+        :title, :title_link, :description,
+        :date, :open_time, :start_time, :ex_description, :place, :place_link,
+        :image
+      )
     end
 
     def set_tomorrow
