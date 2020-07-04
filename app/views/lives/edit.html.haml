@@ -1,23 +1,5 @@
-%h1.forms Edit Entry
-.lives
-  .lives_info
-  .lives_info_title
-    %p.date
-      = @live.date.strftime("%-m月%-d日 (%a)") if @live.date
-    - if @live.link
-      = link_to @live.link, target: :blank do
-        %h3 #{@live.title}
-    - else
-      %h3 #{@live.title}
-  .lives_info_sub
-    .lives_info_sub_img
-      - if @live.image.url
-        = image_tag @live.image.url , alt: '', height: '100px', width: '150px'
-      - else
-        LIVE
-    .lives_info_sub_text
-      = @live.description
-      .lives_info_text_time
-        = "Open: #{@live.open.strftime("%-H:%M")}" if @live.open
-        = "Start: #{@live.start.strftime("%-H:%M")}" if @live.start
-= render partial: 'lives/form', locals: {edit_flag: true}
+.admin
+  .admin_title
+    Edit Entry
+  = form_with model: @live_form, method: :put, url: live_path(params[:id]), local: true do |f|
+    = render partial: 'lives/form', locals: {edit_flag: true, f: f}

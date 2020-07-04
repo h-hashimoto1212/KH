@@ -1,0 +1,44 @@
+$pc: 769px;
+$sp: 768px;
+
+@mixin pc {
+  @media print, screen and (min-width:($pc)){
+    @content;
+  }
+}
+
+@mixin sp{
+  @media print, screen and (max-width:($sp)){
+    @content;
+  }
+}
+
+$sp-design-width: 750;
+@function calcvw($num, $width: $sp-design-width) {
+  @return (1vw * $num / $width * 100);
+}
+
+@mixin form-reset {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none transparent;
+  background-clip: padding-box;
+  color: inherit;
+  font-size: inherit;
+  vertical-align: middle;
+  box-sizing: border-box;
+  &::-ms-clear {
+      display: none;
+  }
+  &::-ms-reveal {
+      display: none;
+  }
+  &::-ms-expand {
+      display: none;
+  }
+}

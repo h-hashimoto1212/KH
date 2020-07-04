@@ -2,7 +2,7 @@ class LivesController < ApplicationController
   before_action :set_tomorrow
 
   def index
-    @lives = Live.eager_load(:details)
+    @lives = Live.eager_load(:details).order("details.date DESC")
     @past_lives = @lives.where("details.date < ?", @tomorrow).order("details.date DESC")
     @future_lives = @lives.where("details.date > ?", @tomorrow).order("details.date")
   end
@@ -27,14 +27,15 @@ class LivesController < ApplicationController
   end
 
   def edit
-    @live = Live.find(params[:id])
-    @live.details.build
+    # @live = Live.find(params[:id])
+    @live_form = LiveForm.new(id: params[:id])
   end
 
   def update
-    @live = Live.find(params[:id])
-    if @live.update(live_params)
-      redirect_to action: 'main', controller: 'home'
+    # @live = Live.find(params[:id])
+    @live_form = LiveForm.new(live_params.merge(id: params[:id]))
+    if @live_form.update
+      redirect_to action: 'index'
     else
       flash.now[:alert] = 'unable to save'
       render :edit
@@ -44,7 +45,7 @@ class LivesController < ApplicationController
   def destroy
     @live = Live.find(params[:id])
     @live.destroy
-    render :new
+    redirect_to action: 'index'
   end
 
   private

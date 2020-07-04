@@ -1,29 +1,47 @@
-.lives
-  %h2 Live Information
-  .lives_future
-    %p UPCOMING
-    - @future_lives.each do |live|
-      .lives_info
-        .lives_info_title
-          .date
-            = live.details[0].date.strftime("%Y/%m/%d(%a)") if live.details[0].date.present?
-          - if live.title_link
-            = link_to live.title_link, target: :blank do
-              %h3 #{live.title}
+.admin
+  .admin_title
+    管理画面
+  .admin_btn-add
+    = link_to new_live_path do
+      = image_tag 'plus.png'
+      新規登録
+
+  %ul.list-schedules
+    - @lives.each do |live|
+      %li.list-schedules-item
+        .item-ttl
+          - if live.title_link.present?
+            = link_to "#{live.title}", "#{live.title_link}", target: :blank
           - else
-            %h3 #{live.title}
-        .lives_info_sub
-          .lives_info_sub_img
-            - if live.images[0].present?
-              = image_tag live.images[0].image.url , alt: '', height: '100px', width: '150px'
-            - else
-              LIVE
-          .lives_info_sub_text
-            = simple_format(live.description)
-            .lives_info_text_time
-              = "Open: #{live.details[0].open_time.strftime("%-H:%M")}" if live.details[0].open_time.present?
-              = "Start: #{live.details[0].start_time.strftime("%-H:%M")}" if live.details[0].start_time.present?
-  .lives_past
-    %p PAST
-
-
+            = live.title
+        .item-date
+          - live.details.each do |detail|
+            = detail.date.strftime("%Y/%m/%d(%a)") if detail.date.present?
+        %ul.item-thumbnails
+          %li.thumbnail
+            - if live.images.present?
+              - live.images.each do |img|
+                = image_tag img.image.url, height: 300, width: 300
+        .item-description
+          = live.description
+        .item-details
+          - live.details.each do |detail|
+            .item-details-exdescription
+              = detail.ex_description
+            .item-details-place
+              - if detail.place_link.present?
+                = link_to detail.place , detail.place_link, target: :blank
+              - elsif detail.place.present?
+                = detail.place
+            .item-details-time
+              - if detail.open_time.present?
+                %p Open: #{detail.open_time.strftime("%-H:%M")}
+              - if detail.start_time.present?
+                %p Start: #{detail.start_time.strftime("%-H:%M")}
+        %ul.item-btns
+          %li.btn
+            = link_to edit_live_path(live.id) do
+              = image_tag 'pencil.png'
+          %li.btn
+            = link_to live_path(live.id), method: :delete do
+              = image_tag 'trash.png'

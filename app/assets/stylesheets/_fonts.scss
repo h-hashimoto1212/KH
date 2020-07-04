@@ -1,0 +1,21 @@
+/***** FONTS *****/
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Bold");
+  font-weight: bold;
+}
+html{
+  color: #fff;
+  word-wrap: break-word;
+  font-size: 62.5%;
+  body{
+  font-size: 1.6rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Yu Gothic", YuGothic, sans-serif;
+  }
+}
+/***** /FONTS *****/

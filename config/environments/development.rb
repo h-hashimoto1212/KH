@@ -70,4 +70,6 @@ Rails.application.configure do
   enable_starttls_auto:  true
   }
 
+  BetterErrors::Middleware.allow_ip! "0.0.0.0/0"
+
 end
