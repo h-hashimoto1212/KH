@@ -1,17 +1,47 @@
-.lives
-  -if @y2020_lives 
-    %h1 2020
-    - @y2020_lives.each do |live|
-      .lives
-        = live.date.strftime("%-m月%-d日 (%a)") if live.date
-        %h3 #{live.title}
-        %span #{live.description}
-        .time
-          Open:
-          = live.open.strftime("%-H:%M") if live.open
-          Start:
-          = live.start.strftime("%-H:%M") if live.start
+.admin
+  .admin_title
+    管理画面
+  .admin_btn-add
+    = link_to new_live_path do
+      = image_tag 'plus.png'
+      新規登録
 
-
-
-
+  %ul.list-schedules
+    - @lives.each do |live|
+      %li.list-schedules-item
+        .item-ttl
+          - if live.title_link.present?
+            = link_to "#{live.title}", "#{live.title_link}", target: :blank
+          - else
+            = live.title
+        .item-date
+          - live.details.each do |detail|
+            = detail.date.strftime("%Y/%m/%d(%a)") if detail.date.present?
+        %ul.item-thumbnails
+          %li.thumbnail
+            - if live.images.present?
+              - live.images.each do |img|
+                = image_tag img.image.url, height: 300, width: 300
+        .item-description
+          = live.description
+        .item-details
+          - live.details.each do |detail|
+            .item-details-exdescription
+              = detail.ex_description
+            .item-details-place
+              - if detail.place_link.present?
+                = link_to detail.place , detail.place_link, target: :blank
+              - elsif detail.place.present?
+                = detail.place
+            .item-details-time
+              - if detail.open_time.present?
+                %p Open: #{detail.open_time.strftime("%-H:%M")}
+              - if detail.start_time.present?
+                %p Start: #{detail.start_time.strftime("%-H:%M")}
+        %ul.item-btns
+          %li.btn
+            = link_to edit_live_path(live.id) do
+              = image_tag 'pencil.png'
+          %li.btn
+            = link_to live_path(live.id), method: :delete do
+              = image_tag 'trash.png'

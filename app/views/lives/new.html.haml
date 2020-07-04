@@ -1,2 +1,5 @@
-%h1.forms New Entry
-= render partial: 'lives/form'
+.admin
+  .admin_title
+    New Entry
+  = form_with model: @live_form, method: :post, url: lives_path, local: true do |f|
+    = render partial: 'lives/form', locals: {f: f}

@@ -1,29 +1,48 @@
-= form_with scope: :live, model: @live, local: true do |f|
-  .forms
-    .date
-      = f.label :date
-      = f.date_select :date,{ default: Time.zone.now, start_year: Time.zone.now.year, use_month_numbers: true, minute_step: 15}
-    .time
-      = f.label :open
-      = f.time_select :open,{default: Time.zone.now, minute_step: 15}
-      = f.label :start
-      = f.time_select :start,{default: Time.zone.now, minute_step: 15}
-    .title
-      = f.label :title
-      = f.text_field :title 
-    .description
-      = f.label :description
-      = f.text_area :description
-    .image
-      = f.label :image
-      = f.file_field :image
-    - if local_assigns[:edit_flag].present?
-      = f.label :remove_image, 'Remove Image'
-      = f.check_box :remove_image
-    .link
-      = f.label :link
-      = f.text_field :link
-    = f.submit
-    - if local_assigns[:edit_flag].present?
-      .destroy 
-        = link_to 'DESTROY', live_path(params[:id]), method: :delete
+.input-area
+  = f.label :title, 'タイトル'
+  = f.text_field :title 
+.input-area
+  = f.label :title_link, 'リンク(タイトル)'
+  = f.text_field :title_link
+.input-area
+  = f.label :image, '画像'
+  = f.file_field :image
+.input-area
+  = f.label :image, '画像'
+  = f.file_field :image
+  -# - if local_assigns[:edit_flag].present?
+  -#   = f.label :remove_image, '画像削除'
+  -#   = f.check_box :remove_image
+.input-area
+  = f.label :description, '詳細'
+  = f.text_area :description
+.input-area
+  = f.label :date, '開催日'
+  = f.text_field :date , type: 'date'
+.input-area
+  = f.label :place, '開催地'
+  = f.text_field :place
+.input-area
+  = f.label :place_link, 'リンク(開催地)'
+  = f.text_field :place_link
+.input-area
+  .time
+    = f.label :open_time, 'Open'
+    = f.text_field :open_time, type: 'time'
+  .time
+    = f.label :start_time, 'Start'
+    = f.text_field :start_time, type: 'time'
+.input-area
+  = f.label :ex_description, '追記'
+  = f.text_field :ex_description
+-# .add-btn
+-#   追加
+.page-bottom-btns
+  %ul.btns
+    -# %li.btn
+    -#   = button_to 'キャンセル', "/lives", class: 'cancel'
+    %li.btn
+      = f.submit '登録', class: 'submit'
+-# - if local_assigns[:edit_flag].present?
+-#   .destroy 
+-#     = link_to 'DESTROY', live_path(params[:id]), method: :delete
