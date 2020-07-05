@@ -1,29 +1,35 @@
-.lives
-  %h2 Live Information
-  -if @y2020_lives 
-    %h5 2020
-  - @y2020_lives.each do |live|
-    .lives_info
-      .lives_info_title
-        %p.date
-          = live.date.strftime("%-m月%-d日 (%a)") if live.date
-        - if live.link
-          = link_to live.link, target: :blank do
-            %h3 #{live.title}
-        - else
-          %h3 #{live.title}
-      .lives_info_sub
-        .lives_info_sub_img
-          - if live.image.url
-            = image_tag live.image.url , alt: '', height: '100px', width: '150px'
+-if lives.present?
+  %ul.list-schedules
+    - lives.each do |live|
+      %li.list-schedules-item
+        .item-ttl
+          - if live.title_link.present?
+            = link_to "#{live.title}", "#{live.title_link}", target: :blank
           - else
-            LIVE
-        .lives_info_sub_text
-          = live.description
-          .lives_info_text_time
-            = "Open: #{live.open.strftime("%-H:%M")}" if live.open
-            = "Start: #{live.start.strftime("%-H:%M")}" if live.start
-
-
-
-
+            = live.title
+        .item-date
+          - live.details.each do |detail|
+            = detail.date.strftime("%Y/%m/%d(%a)") if detail.date.present?
+        %ul.item-thumbnails
+          - if live.images.present?
+            - live.images.each do |img|
+              %li.thumbnail
+                = image_tag img.image.url, height: 300, width: 300
+          - else
+            %li.no_image LIVE
+        .item-description
+          = simple_format(live.description)
+        .item-details
+          - live.details.each do |detail|
+            .item-details-exdescription
+              = detail.ex_description
+            .item-details-place
+              - if detail.place_link.present?
+                = link_to detail.place , detail.place_link, target: :blank
+              - elsif detail.place.present?
+                = detail.place
+            .item-details-time
+              - if detail.open_time.present?
+                %p Open: #{detail.open_time.strftime("%-H:%M")}
+              - if detail.start_time.present?
+                %p Start: #{detail.start_time.strftime("%-H:%M")}

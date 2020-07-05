@@ -3,9 +3,9 @@ function wait(waitMsec) {
   while (new Date() - startMsec < waitMsec);
 }
 
-const loader = document.querySelector('#loader');
-const title = document.querySelector('#title_bg');
-const contents = document.querySelector('.contents');
+const loader = document.getElementById('loader');
+const title = document.getElementById('title_bg');
+const contents = document.getElementsByClassName('contents')[0];
 
 function loaded(){
   loader.classList.add('hidden');
@@ -19,9 +19,9 @@ setTimeout(loaded, 3000);
 
 window.addEventListener('load', loaded);
 
-const header = document.querySelector('header');
-const header_left = document.querySelector('.header_left');
-const main = document.querySelector('main');
+const header = document.getElementsByTagName('header')[0];
+const header_left = document.getElementsByClassName('header_left')[0];
+const main = document.getElementsByTagName('main')[0];
 
 // function headerFix(){
 //   var scrPos = window.pageYOffset;
@@ -39,28 +39,7 @@ const main = document.querySelector('main');
 // window.addEventListener('scroll', headerFix);
 
 
-const modal_open = document.querySelectorAll('.modal_open');
-const modal_close = document.querySelector('.modal_close');
-const modal = document.querySelector('.modal');
-const modal_item = document.querySelector('.modal_item');
-
-function modalOpen(e){
-  modal.style.display = 'flex';
-  const movID = modal_open[e].dataset.target;
-  modal_item.innerHTML = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'+movID+'?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>';
-};
-for (i = 0; i < modal_open.length; i++) {
-  modal_open[i].addEventListener('click', modalOpen.bind(this, i));
-}
-
-function modalClose(e){
-  if (e.target == modal || e.target == modal_close)
-  {
-    modal.style.display = 'none';
-    modal_item.innerHTML = '';
-  }
-};
-window.addEventListener('click', modalClose);
+//smoothScroll Functions
 
 function smoothScroll(target, duration){
   var target = document.querySelector(target);
@@ -81,12 +60,12 @@ function smoothScroll(target, duration){
   requestAnimationFrame(animation);
 }
 
-const home_button = document.querySelector('.home_button');
+const home_button = document.getElementsByClassName('home_button')[0];
 home_button.addEventListener('click', function(){
   smoothScroll('.top', 500);
 });
 
-const news_button = document.querySelector('.news_button');
+const news_button = document.getElementsByClassName('news_button')[0];
 news_button.addEventListener('click', function(){
   smoothScroll('.news', 500);
 });

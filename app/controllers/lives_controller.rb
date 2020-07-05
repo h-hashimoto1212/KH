@@ -3,8 +3,8 @@ class LivesController < ApplicationController
 
   def index
     @lives = Live.eager_load(:details).order("details.date DESC")
-    @past_lives = @lives.where("details.date < ?", @tomorrow).order("details.date DESC")
-    @future_lives = @lives.where("details.date > ?", @tomorrow).order("details.date")
+    # @past_lives = @lives.where("details.date < ?", @tomorrow).order("details.date DESC")
+    # @future_lives = @lives.where("details.date > ?", @tomorrow).order("details.date")
   end
 
   def show
