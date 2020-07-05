@@ -10,7 +10,7 @@ function defaultParallax(){
 }
 window.addEventListener('scroll', defaultParallax);
 
-const bgBlack = document.querySelector('.bg_black');
+const bgBlack = document.getElementsByClassName('bg_black')[0];
 const bgHeight = bgBlack.offsetHeight;
 
 function bgParallax(){
@@ -22,19 +22,18 @@ function bgParallax(){
 }
 window.addEventListener('scroll', bgParallax);
 
-function newsParallax(){
-  var para_text = document.querySelectorAll('.paratext');
-  const news = document.querySelector('.news');
-  var startPos = window.innerHeight / 2;
-  var textPos = {};
-  for(i = 0; i < para_text.length; i++){
-    textPos[i] = para_text[i].getBoundingClientRect().top;
-    if(textPos[i] < startPos && textPos[i] > 0 )
-    {
-      // console.log(textPos[i]);
-      para_text[i].style.transform = 'translateX('+ -(textPos[i]) * 3 +'px)';
-    }
-  }
-  
-}
-document.addEventListener('scroll', newsParallax);
+// function newsParallax(){
+//   var para_text = document.querySelectorAll('.paratext');
+//   const news = document.querySelector('.news');
+//   var startPos = window.innerHeight / 2;
+//   var textPos = {};
+//   for(i = 0; i < para_text.length; i++){
+//     textPos[i] = para_text[i].getBoundingClientRect().top;
+//     if(textPos[i] < startPos && textPos[i] > 0 )
+//     {
+//       // console.log(textPos[i]);
+//       para_text[i].style.transform = 'translateX('+ -(textPos[i]) * 3 +'px)';
+//     }
+//   }
+// }
+// document.addEventListener('scroll', newsParallax);
