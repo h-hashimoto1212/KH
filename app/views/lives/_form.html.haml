@@ -4,37 +4,40 @@
 .input-area
   = f.label :title_link, 'リンク(タイトル)'
   = f.text_field :title_link
-.input-area
-  = f.label :image, '画像'
-  = f.file_field :image
-.input-area
-  = f.label :image, '画像'
-  = f.file_field :image
+= f.fields_for :images do |img|
+  .input-area
+    = img.label :file, '画像'
+    = img.file_field :file
+    = img.hidden_field :id, value: image.object.id
+-# .input-area
+-#   = f.label :image, '画像'
+-#   = f.file_field :image
   -# - if local_assigns[:edit_flag].present?
   -#   = f.label :remove_image, '画像削除'
   -#   = f.check_box :remove_image
 .input-area
   = f.label :description, '詳細'
   = f.text_area :description
-.input-area
-  = f.label :date, '開催日'
-  = f.text_field :date , type: 'date'
-.input-area
-  = f.label :place, '開催地'
-  = f.text_field :place
-.input-area
-  = f.label :place_link, 'リンク(開催地)'
-  = f.text_field :place_link
-.input-area
-  .time
-    = f.label :open_time, 'Open'
-    = f.text_field :open_time, type: 'time'
-  .time
-    = f.label :start_time, 'Start'
-    = f.text_field :start_time, type: 'time'
-.input-area
-  = f.label :ex_description, '追記'
-  = f.text_field :ex_description
+= f.fields_for :details do |detail|
+  .input-area
+    = detail.label :date, '開催日'
+    = detail.text_field :date , type: 'date'
+  .input-area
+    = detail.label :place, '開催地'
+    = detail.text_field :place
+  .input-area
+    = detail.label :place_link, 'リンク(開催地)'
+    = detail.text_field :place_link
+  .input-area
+    .time
+      = detail.label :open_time, 'Open'
+      = detail.text_field :open_time, type: 'time'
+    .time
+      = detail.label :start_time, 'Start'
+      = detail.text_field :start_time, type: 'time'
+  .input-area
+    = detail.label :ex_description, '追記'
+    = detail.text_field :ex_description
 -# .add-btn
 -#   追加
 .page-bottom-btns

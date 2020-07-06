@@ -21,7 +21,7 @@
           %li.thumbnail
             - if live.images.present?
               - live.images.each do |img|
-                = image_tag img.image.url, height: 300, width: 300
+                = image_tag img.file.url, height: 300, width: 300
         .item-description
           = live.description
         .item-details
@@ -35,9 +35,9 @@
                 = detail.place
             .item-details-time
               - if detail.open_time.present?
-                %p Open: #{detail.open_time.strftime("%-H:%M")}
+                %p Open:  #{detail.open_time}
               - if detail.start_time.present?
-                %p Start: #{detail.start_time.strftime("%-H:%M")}
+                %p Start: #{detail.start_time}
         %ul.item-btns
           %li.btn
             = link_to edit_live_path(live.id) do
