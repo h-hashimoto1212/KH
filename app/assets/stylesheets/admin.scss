@@ -1,4 +1,3 @@
-@import 'reset';
 @import 'mixin';
 @import 'fonts';
 
@@ -38,9 +37,11 @@ body{
         border: 1px solid #fff;
         border-radius: 100px;
       }
-      img{
+      svg{
         margin-right: 5px;
         margin-left: -1em;
+        fill: #ffffff;
+        transition: fill .5s;
         @include pc {
           height: 1.4rem;
         }
@@ -171,6 +172,7 @@ body{
             &-thumbnails{
               display: flex;
               justify-content: center;
+              height: 300px;
               .thumbnail{
                 @include pc {
                   width: calc((100% - 20px)/2);
@@ -235,7 +237,7 @@ body{
                   border-radius: 50%;
                   border: 1px solid #fff;
                 }
-                img{
+                svg{
                   width: 100%;
                   fill: #fff;
                 }
@@ -262,121 +264,7 @@ body{
     }
   }
 
-  .input-area{
-    @include pc {
-      width: 50%;
-      margin: 0 auto;
-    }
-    label{
-      display: block;
-      margin-bottom: .5rem;
-      @include pc {
-        font-size: 1.4rem;
-      }
-      @include sp {
-        font-size: 1.2rem;
-      }
-    }
-    input[type="text"]{
-      width: 100%;
-      font-size: 1.6rem;
-      outline: none;
-    }
-    textarea{
-      width: 100%;
-      height: 20em;
-      font-size: 1.6rem;
-      outline: none;
-      resize: none;
-    }
-    input[type="date"]{
-      width: 50%;
-      font-size: 1.6rem;
-      outline: none;
-    }
-    input[type="time"]{
-      width: 50%;
-      font-size: 1.6rem;
-      outline: none;
-    }
-    & + .input-area{
-      margin-top: 3rem;
-    }
-    input[type="file"]{
-      outline: none;
-    }
-  }
-  .page-bottom-btns{
-    @include pc {
-      padding-bottom: 4rem;
-    }
-    @include sp {
-      padding-bottom: calcvw(40);
-    }
-    .btns{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      @include pc {
-        margin-top: 8rem;
-      }
-      @include sp {
-        margin-top: calcvw(120);
-      }
-      .btn{
-        width: 40%;
-        max-width: 250px;
-        @include pc {
-          cursor: pointer;
-          transition: opacity .5s;
-          &:hover{
-            opacity: 0.7;
-          }
-        }
-        &:nth-child(2){
-          margin-left: 20px;
-        }
-        .cancel{
-          border: 1px solid #fff;
-          text-align: center;
-          border-radius: 100px;
-          overflow: hidden;
-          background-color: transparent;
-          width: 250px;
-          cursor: pointer;
-          @include pc {
-            font-size: 1.4rem;
-          }
-          @include sp {
-            font-size: calcvw(24);
-          }
-          display: block;
-          padding: 1rem;
-          color: #fff;
-        }
-        .submit{
-          border: 1px solid #fff;
-          color: #333;
-          text-align: center;
-          border-radius: 100px;
-          overflow: hidden;
-          background-color: #fff;
-          width: 250px;
-          cursor: pointer;
-          @include pc {
-            font-size: 1.4rem;
-          }
-          @include sp {
-            font-size: calcvw(24);
-          }
-          display: block;
-          background-color: #fff;
-          padding: 1rem;
-          color: #333;
-        }
-      }
-    }
-  }
+  
 
   #modal{
     position: fixed;

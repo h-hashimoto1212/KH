@@ -3,7 +3,7 @@
     管理画面
   .admin_btn-add
     = link_to new_live_path do
-      = image_tag 'plus.png'
+      = embedded_svg("add.svg", {})
       新規登録
 
   %ul.list-schedules
@@ -18,9 +18,9 @@
           - live.details.each do |detail|
             = detail.date.strftime("%Y/%m/%d(%a)") if detail.date.present?
         %ul.item-thumbnails
-          %li.thumbnail
-            - if live.images.present?
-              - live.images.each do |img|
+          - if live.images.present?
+            - live.images.each do |img|
+              %li.thumbnail
                 = image_tag img.file.url, height: 300, width: 300
         .item-description
           = live.description
@@ -41,7 +41,7 @@
         %ul.item-btns
           %li.btn
             = link_to edit_live_path(live.id) do
-              = image_tag 'pencil.png'
+              = embedded_svg("edit.svg", {})
           %li.btn
             = link_to live_path(live.id), method: :delete do
-              = image_tag 'trash.png'
+              = embedded_svg("delete.svg", {})

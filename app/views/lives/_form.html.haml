@@ -4,11 +4,19 @@
 .input-area
   = f.label :title_link, 'リンク(タイトル)'
   = f.text_field :title_link
-= f.fields_for :images do |img|
-  .input-area
-    = img.label :file, '画像'
-    = img.file_field :file
-    = img.hidden_field :id, value: image.object.id
+.input-area
+  .image-file-form
+    = f.fields_for :images, multiple: true do |img, i|
+      %label
+        = img.file_field :file, class: 'image-file-field'
+        -if img.object.file.present?
+          = image_tag img.object.file.url
+          .delete-btn{data:{target: i}}
+        - else
+          .image-file-add
+            = embedded_svg("add.svg", {})
+            %p 画像追加
+        -# = f.hidden_field :images, value: img.object.id
 -# .input-area
 -#   = f.label :image, '画像'
 -#   = f.file_field :image
@@ -18,7 +26,7 @@
 .input-area
   = f.label :description, '詳細'
   = f.text_area :description
-= f.fields_for :details do |detail|
+= f.fields_for :details, multiple: true do |detail|
   .input-area
     = detail.label :date, '開催日'
     = detail.text_field :date , type: 'date'
@@ -38,6 +46,8 @@
   .input-area
     = detail.label :ex_description, '追記'
     = detail.text_field :ex_description
+.add-details
+  = button_to '追加', "#", class: 'add-btn'
 -# .add-btn
 -#   追加
 .page-bottom-btns

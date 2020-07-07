@@ -1,5 +1,6 @@
 class LivesController < ApplicationController
   before_action :set_tomorrow, only: [:index]
+  before_action :set_image_count
 
   def index
     @lives = Live.eager_load(:details).order("details.date DESC")
@@ -14,7 +15,7 @@ class LivesController < ApplicationController
   def new
     @live = Live.new
     @live.details.build
-    @live.images.build
+    @image_count.times {@live.images.build}
   end
 
   def create
@@ -29,9 +30,9 @@ class LivesController < ApplicationController
 
   def edit
     @live = Live.find(params[:id])
-    if @live.images.nil?
-      @live.images.build
-    end
+    i_count = @live.images.count
+    (@image_count - i_count).times {@live.images.build}
+
   end
 
   def update
@@ -62,9 +63,13 @@ class LivesController < ApplicationController
     def update_live_params
       params.require(:live).permit(
         :title, :title_link, :description,
-        details_attributes:[:date, :open_time, :start_time, :ex_description, :place, :place_link, :id, :_destroy],
-        images_attributes:[:file, :id, :_destroy]
+        details_attributes:[:date, :open_time, :start_time, :ex_description, :place, :place_link, :_destroy],
+        images_attributes:[:file, :_destroy]
       )
+    end
+
+    def set_image_count
+      @image_count = 2
     end
 
     def set_tomorrow
