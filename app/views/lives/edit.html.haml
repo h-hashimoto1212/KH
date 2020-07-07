@@ -1,6 +1,6 @@
 .admin
   .admin_title
     Edit Entry
-  .live-form
+  .live_form
     = form_with model: @live, method: :put, url: live_path(params[:id]), local: true do |f|
       = render partial: 'lives/form', locals: {edit_flag: true, f: f}

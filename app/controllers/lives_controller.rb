@@ -32,12 +32,11 @@ class LivesController < ApplicationController
     @live = Live.find(params[:id])
     i_count = @live.images.count
     (@image_count - i_count).times {@live.images.build}
-
   end
 
   def update
     @live = Live.find(params[:id])
-    if @live_form.update(update_live_params)
+    if @live.update(update_live_params)
       redirect_to action: 'index'
     else
       flash.now[:alert] = 'unable to save'
@@ -63,8 +62,8 @@ class LivesController < ApplicationController
     def update_live_params
       params.require(:live).permit(
         :title, :title_link, :description,
-        details_attributes:[:date, :open_time, :start_time, :ex_description, :place, :place_link, :_destroy],
-        images_attributes:[:file, :_destroy]
+        [details_attributes:[:date, :open_time, :start_time, :ex_description, :place, :place_link, :_destroy, :id]],
+        [images_attributes:[:file, :_destroy, :id]]
       )
     end
 

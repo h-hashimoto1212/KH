@@ -204,6 +204,7 @@ body{
               }
             }
             &-details{
+              margin-bottom: 2rem;
               &-time{
                 display: flex;
                 p{
@@ -263,8 +264,6 @@ body{
       }
     }
   }
-
-  
 
   #modal{
     position: fixed;
