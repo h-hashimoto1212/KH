@@ -47,41 +47,74 @@
     }
 
     .image-file{
-      &-form{
-        display: flex;
-        justify-content: space-between;
+      display: flex;
+      justify-content: space-between;
+      &-field{
+        width: calc(50% - 10px);
+        position: relative;
         label{
           display: flex;
+          flex-direction: column;
           overflow: hidden;
           justify-content: center;
+          align-items: center;
           border: 1px solid #fff;
-          height: 300px;
-          width: calc(50% - 10px);
-          transition: all .5s;
+          min-height: 190px;
+          @include pc{
+            cursor: pointer;
+            transition: all .5s;
+            &:hover{
+              background-color: #333333;
+              .swap-btn{
+                animation: blinker 1s linear infinite alternate;
+              }
+              .add-btn{
+                svg{
+                  animation: blinker 1s linear infinite alternate;
+                }
+              }
+            }
+          }
           svg{
             fill: #ffffff;
             transition: all .5s;
           }
-          cursor: pointer;
-          &:hover{
-            background-color: #fff;
-            color: #333333;
+          .swap-btn{
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
             svg{
-              fill: #333333;
+              fill: #ffffff;
+            }
+          }
+          .add-btn{
+            svg{
+              width: 40px;
+              margin: 10px;
+              fill: #ffffff;
             }
           }
         }
       }
-      &-field{
-        display: none;
-      }
-      &-add{
-        align-self: center;
+      
+      .delete-btn{
+        position: absolute;
+        bottom: -28px;
+        left: 50%;
+        transform: translateX(-50%);
         svg{
-          width: 40px;
-          margin: 10px;
           fill: #ffffff;
         }
+        &:hover{
+          svg{
+            animation: blinker 1s linear infinite alternate;
+          }
+
+        }
+      }
+      .hidden-field{
+        display: none;
       }
     }
   }

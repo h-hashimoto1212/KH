@@ -5,17 +5,23 @@
   = f.label :title_link, 'リンク(タイトル)'
   = f.text_field :title_link
 .input-area
-  .image-file-form
+  .image-file
     = f.fields_for :images, multiple: true do |img, i|
-      %label
-        = img.file_field :file, class: 'image-file-field'
-        -if img.object.file.present?
-          = image_tag img.object.file.url
+      .image-file-field
+        %label
+          = img.file_field :file, class: 'hidden-field'
+          -if img.object.file.present?
+            .thumb
+              = image_tag img.object.file.url, height:150
+            .swap-btn
+              = embedded_svg("swap.svg", {})
+          - else
+            .add-btn
+              = embedded_svg("add.svg", {})
+              %p 画像追加
+        - if img.object.file.present?
           .delete-btn{data:{target: i}}
-        - else
-          .image-file-add
-            = embedded_svg("add.svg", {})
-            %p 画像追加
+            = embedded_svg("x_btn.svg", {})
         -# = f.hidden_field :images, value: img.object.id
 -# .input-area
 -#   = f.label :image, '画像'
