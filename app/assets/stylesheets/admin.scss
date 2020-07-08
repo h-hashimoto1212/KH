@@ -1,5 +1,6 @@
 @import 'mixin';
 @import 'fonts';
+@import 'animations';
 
 body{
   background: #000;
@@ -258,129 +259,6 @@ body{
               @include pc {
                 opacity: 1;
               }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  #modal{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.8);
-    z-index: 9999;
-    display: none;
-    opacity: 0;
-    animation: fadeIn .5s ease-in-out forwards;
-    .modal-content{
-      transform: translate(-50%,-50%);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      border: 1px solid #fff;
-      padding: 20px;
-      width: 90%;
-      max-width: 800px;
-      .modal-text{
-        @include pc {
-          font-size: 1.6rem;
-        }
-        @include sp {
-          font-size: calcvw(24);
-        }
-        &.note{
-          margin-top: 1rem;
-          margin-bottom: 2rem;
-          @include pc {
-            font-size: 1.2rem;
-          }
-          @include sp {
-            font-size: calcvw(20);
-          }
-        }
-      }
-      .data{
-        &-title{
-          font-weight: bold;
-          margin-bottom: 1rem;
-          @include pc {
-            font-size: 1.8rem;
-          }
-          @include sp {
-            font-size: calcvw(32);
-          }
-        }
-        &-date{
-          margin-bottom: 1rem;
-          @include pc {
-            font-size: 1.4rem;
-          }
-          @include sp {
-            font-size: calcvw(24);
-          }
-        }
-        &-description{
-          @include pc {
-            font-size: 1.6rem;
-          }
-          @include sp {
-            font-size: calcvw(28);
-          }
-        }
-      }
-      .modal-btns{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: rgba(0,0,0,0.8);
-        @include pc {
-          margin-top: 4rem;
-        }
-        @include sp {
-          margin-top: calcvw(80);
-        }
-
-        .btn{
-          width: 40%;
-          max-width: 250px;
-          @include pc {
-            cursor: pointer;
-            transition: opacity .5s;
-            &:hover{
-              opacity: 0.7;
-            }
-          }
-          &:nth-child(2){
-            margin-left: 20px;
-          }
-          .cancel{
-            border: 1px solid #fff;
-            padding: 1rem;
-            text-align: center;
-            border-radius: 100px;
-            @include pc {
-              font-size: 1.4rem;
-            }
-            @include sp {
-              font-size: calcvw(24);
-            }
-          }
-          .delete{
-            border: 1px solid #fff;
-            background-color: #fff;
-            color: #333;
-            padding: 1rem;
-            text-align: center;
-            border-radius: 100px;
-            @include pc {
-              font-size: 1.4rem;
-            }
-            @include sp {
-              font-size: calcvw(24);
             }
           }
         }

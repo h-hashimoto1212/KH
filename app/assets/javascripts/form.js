@@ -1,1 +1,3 @@
-const deleteImageButtons 
+const deleteImageButtons = document.getElementsByClassName('delete-btn');
+
+

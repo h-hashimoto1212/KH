@@ -42,6 +42,11 @@
           %li.btn
             = link_to edit_live_path(live.id) do
               = embedded_svg("edit.svg", {})
-          %li.btn
-            = link_to live_path(live.id), method: :delete do
-              = embedded_svg("delete.svg", {})
+          %li.btn.modal_open{data:{live: "true", id: live.id, title: live.title, description: live.description}}
+            -# = link_to live_path(live.id), method: :delete do
+            = embedded_svg("delete.svg", {})
+.modal
+  .modal_content
+    .modal_close
+      = embedded_svg("x_btn.svg", {})
+    .modal_item

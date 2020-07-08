@@ -1,11 +1,13 @@
-@import 'animations.scss';
+@import 'animations';
+@import 'mixin';
+@import 'fonts';
 
 .hidden{
   display: none;
   opacity: 0;
 }
 .fadeout{
-  transition: opacity 1.5s 3s;
+  transition: opacity 1.5s 2s;
   opacity: 0;
 }
 .fadein{
@@ -34,28 +36,12 @@
 }
 
 .modal{
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  position: fixed;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 999;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  animation: fadein 1s;
+
   &_content{
-    background-color: #fff;
-    color: #333333;
-    padding: 20px;
-    position: relative;
-    .modal_close{
-      position: absolute;
-      top: 0;
-      right: 0;
-      background-color: #ff0000;
-    }
+    // background-color: #fff;
+    // position: relative;
+    // border: 2px solid #ffffff;
+
   }
 }
 

@@ -6,22 +6,23 @@
   = f.text_field :title_link
 .input-area
   .image-file
-    = f.fields_for :images, multiple: true do |img, i|
+    = f.fields_for :images, multiple: true do |img|
       .image-file-field
-        %label
-          = img.file_field :file, class: 'hidden-field'
-          -if img.object.file.present?
-            .thumb
-              = image_tag img.object.file.url, height:150
-            .swap-btn
+        -if img.object.file.present?
+          .thumb
+            = image_tag img.object.file.url, height:200
+          .btns
+            %label.swap-btn
+              = img.file_field :file, class: 'hidden-field'
               = embedded_svg("swap.svg", {})
-          - else
-            .add-btn
-              = embedded_svg("add.svg", {})
-              %p 画像追加
-        - if img.object.file.present?
-          .delete-btn{data:{target: i}}
-            = embedded_svg("x_btn.svg", {})
+            .delete-btn{data:{id: img.index}}
+              = embedded_svg("x_btn.svg", {})
+        - else
+          %label.add-btn
+            = img.file_field :file, class: 'hidden-field'
+            = embedded_svg("add.svg", {})
+            %p 画像追加
+
         -# = f.hidden_field :images, value: img.object.id
 -# .input-area
 -#   = f.label :image, '画像'
@@ -54,14 +55,12 @@
     = detail.text_field :ex_description
 .add-details
   .add-btn 追加
--# .add-btn
--#   追加
+
 .page-bottom-btns
   %ul.btns
-    -# %li.btn
-    -#   = button_to 'キャンセル', "/lives", class: 'cancel'
     %li.btn
       = f.submit '登録', class: 'submit'
--# - if local_assigns[:edit_flag].present?
--#   .destroy 
--#     = link_to 'DESTROY', live_path(params[:id]), method: :delete
+    - if local_assigns[:edit_flag].present?
+      %li.btn
+        = link_to 'キャンセル', "/lives", class: 'cancel'
+

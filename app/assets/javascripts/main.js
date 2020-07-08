@@ -15,7 +15,7 @@ function loaded(){
     title.classList.add('hidden');
   });
 }
-setTimeout(loaded, 3000);
+// setTimeout(loaded, 1000);
 
 window.addEventListener('load', loaded);
 

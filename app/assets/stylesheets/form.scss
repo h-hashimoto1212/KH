@@ -1,5 +1,6 @@
 @import 'mixin';
 @import 'fonts';
+@import 'animations';
 
 .live_form{
   .input-area{
@@ -51,66 +52,50 @@
       justify-content: space-between;
       &-field{
         width: calc(50% - 10px);
-        position: relative;
-        label{
+        label.add-btn{
           display: flex;
           flex-direction: column;
-          overflow: hidden;
           justify-content: center;
           align-items: center;
           border: 1px solid #fff;
-          min-height: 190px;
+          min-height: 200px;
+          svg{
+            width: 2rem;
+            margin: 10px;
+            fill: #ffffff;
+          }
           @include pc{
             cursor: pointer;
             transition: all .5s;
             &:hover{
               background-color: #333333;
-              .swap-btn{
+              svg{
                 animation: blinker 1s linear infinite alternate;
               }
-              .add-btn{
-                svg{
-                  animation: blinker 1s linear infinite alternate;
-                }
-              }
-            }
-          }
-          svg{
-            fill: #ffffff;
-            transition: all .5s;
-          }
-          .swap-btn{
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            svg{
-              fill: #ffffff;
-            }
-          }
-          .add-btn{
-            svg{
-              width: 40px;
-              margin: 10px;
-              fill: #ffffff;
             }
           }
         }
       }
-      
-      .delete-btn{
-        position: absolute;
-        bottom: -28px;
-        left: 50%;
-        transform: translateX(-50%);
-        svg{
-          fill: #ffffff;
-        }
-        &:hover{
+      .thumb{
+        display: flex;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #fff;
+        height: 200px;
+      }
+      .btns{
+        display: flex;
+        justify-content: space-around;
+        margin-top: .5rem;
+        .swap-btn, .delete-btn{
           svg{
+            width: 2em;
+            fill: #ffffff;
+          }
+          &:hover{
             animation: blinker 1s linear infinite alternate;
           }
-
         }
       }
       .hidden-field{
@@ -183,24 +168,6 @@
         &:nth-child(2){
           margin-left: 20px;
         }
-        // .cancel{
-        //   border: 1px solid #fff;
-        //   text-align: center;
-        //   border-radius: 100px;
-        //   overflow: hidden;
-        //   background-color: transparent;
-        //   width: 250px;
-        //   cursor: pointer;
-        //   @include pc {
-        //     font-size: 1.4rem;
-        //   }
-        //   @include sp {
-        //     font-size: calcvw(24);
-        //   }
-        //   display: block;
-        //   padding: 1rem;
-        //   fill: #fff;
-        // }
         .submit{
           border: 1px solid #fff;
           color: #333;
@@ -220,6 +187,22 @@
           background-color: #fff;
           padding: 1rem;
           color: #333;
+        }
+        .cancel{
+          border: 1px solid #fff;
+          text-align: center;
+          border-radius: 100px;
+          background-color: transparent;
+          width: 250px;
+          color: #ffffff;
+          @include pc {
+            font-size: 1.4rem;
+          }
+          @include sp {
+            font-size: calcvw(24);
+          }
+          display: block;
+          padding: 1rem;
         }
       }
     }
