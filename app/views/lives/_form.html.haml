@@ -5,44 +5,61 @@
   = f.label :title_link, 'リンク(タイトル)'
   = f.text_field :title_link
 .input-area
-  = f.label :image, '画像'
-  = f.file_field :image
-.input-area
-  = f.label :image, '画像'
-  = f.file_field :image
-  -# - if local_assigns[:edit_flag].present?
-  -#   = f.label :remove_image, '画像削除'
-  -#   = f.check_box :remove_image
-.input-area
+  .image-file
+    = f.fields_for :images do |img|
+      .image-file-field
+        %label 画像#{img.index + 1}
+        %label{for: "live_images_attributes_#{img.index}_file"}
+          = img.file_field :file, class: 'hidden-field image-input'
+          = img.check_box :_destroy, class: 'hidden-field image_delete'
+          .thumb
+            -if img.object.file.present?
+              = image_tag img.object.file.url, height:200
+          .add-btn
+            = embedded_svg("add.svg", {})
+            %p 画像追加
+        .btns
+          %label.swap-btn{for: "live_images_attributes_#{img.index}_file"}
+            = embedded_svg("swap.svg", {})
+          .delete-btn
+            = embedded_svg("x_btn.svg", {})
+.input-area.description
   = f.label :description, '詳細'
   = f.text_area :description
-.input-area
-  = f.label :date, '開催日'
-  = f.text_field :date , type: 'date'
-.input-area
-  = f.label :place, '開催地'
-  = f.text_field :place
-.input-area
-  = f.label :place_link, 'リンク(開催地)'
-  = f.text_field :place_link
-.input-area
-  .time
-    = f.label :open_time, 'Open'
-    = f.text_field :open_time, type: 'time'
-  .time
-    = f.label :start_time, 'Start'
-    = f.text_field :start_time, type: 'time'
-.input-area
-  = f.label :ex_description, '追記'
-  = f.text_field :ex_description
--# .add-btn
--#   追加
+.detail-area
+  = f.fields_for :details, multiple: true do |detail|
+    .detail-area-item{id: "detail-#{detail.index}"}
+      .input-area
+        = detail.label :date, '開催日'
+        = detail.text_field :date , type: 'date'
+      .input-area
+        = detail.label :place, '開催地'
+        = detail.text_field :place
+      .input-area
+        = detail.label :place_link, 'リンク(開催地)'
+        = detail.text_field :place_link
+      .input-area.open_start
+        .time
+          = detail.label :open_time, 'Open'
+          = detail.text_field :open_time, type: 'time'
+        .time
+          = detail.label :start_time, 'Start'
+          = detail.text_field :start_time, type: 'time'
+      .input-area
+        = detail.label :ex_description, '追記'
+        = detail.text_field :ex_description
+      %label.delete-details
+        = detail.check_box :_destroy, class: 'hidden-field detail_delete'
+        = embedded_svg("x_btn.svg", {})
+.add-details
+  .add-btn
+    = embedded_svg("add.svg",{})
+
 .page-bottom-btns
   %ul.btns
-    -# %li.btn
-    -#   = button_to 'キャンセル', "/lives", class: 'cancel'
     %li.btn
       = f.submit '登録', class: 'submit'
--# - if local_assigns[:edit_flag].present?
--#   .destroy 
--#     = link_to 'DESTROY', live_path(params[:id]), method: :delete
+    - if local_assigns[:edit_flag].present?
+      %li.btn
+        = link_to 'キャンセル', "/lives", class: 'cancel'
+

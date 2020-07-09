@@ -14,7 +14,7 @@
           - if live.images.present?
             - live.images.each do |img|
               %li.thumbnail
-                = image_tag img.image.url, height: 300, width: 300
+                = image_tag img.file.url, height: 300, width: 300
           - else
             %li.no_image LIVE
         .item-description
@@ -30,6 +30,6 @@
                 = detail.place
             .item-details-time
               - if detail.open_time.present?
-                %p Open: #{detail.open_time.strftime("%-H:%M")}
+                %p Open: #{detail.open_time}
               - if detail.start_time.present?
-                %p Start: #{detail.start_time.strftime("%-H:%M")}
+                %p Start: #{detail.start_time}

@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_03_010345) do
+ActiveRecord::Schema.define(version: 2020_07_06_215912) do
 
   create_table "details", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "live_id", null: false
     t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.time "open_time"
-    t.time "start_time"
+    t.string "open_time"
+    t.string "start_time"
     t.text "ex_description"
     t.string "place"
     t.string "place_link"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_010345) do
   end
 
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "image"
+    t.string "file"
     t.bigint "live_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

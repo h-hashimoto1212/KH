@@ -5,8 +5,34 @@ const modal_item = document.getElementsByClassName('modal_item')[0];
 
 function modalOpen(e){
   modal.style.display = 'flex';
-  const movID = modal_open[e].dataset.target;
-  modal_item.innerHTML = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'+movID+'?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>';
+  console.log(modal_open[e].dataset.live)
+  if (modal_open[e].dataset.target) {
+    const movID = modal_open[e].dataset.target;
+    var width = modal_item.clientWidth;
+    var height = width * (9/16)
+    console.log(width)
+    modal_item.innerHTML = `<iframe width="${width}" height="${height}" src="https://www.youtube.com/embed/'+movID+'?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>`
+  }
+  if (modal_open[e].dataset.live == "true") {
+    const liveID = modal_open[e].dataset.id;
+    const title = modal_open[e].dataset.title;
+    const description = modal_open[e].dataset.description;
+    modal_item.innerHTML = `<p class="modal_text">データを削除します。よろしいですか？</p>
+                            <p class="modal_text note">※削除したデータの復元はできません。</p>
+                            <p class="modal_title">${title}</p>
+                            <p class="modal_description">${description}</p>
+                            <div class="modal_selection">
+                              <div class="btn cancel">キャンセル</div>
+                              <a class="btn confirm" rel="nofollow" data-method="delete" href="/lives/${liveID}">
+                                <p>削除する</p>
+                              </a>
+                            </div>`
+    const cancel = document.getElementsByClassName('cancel')[0];
+    cancel.addEventListener('click', function(){
+      modal.style.display = 'none';
+      modal_item.innerHTML = '';
+    });
+  }
 };
 for (i = 0; i < modal_open.length; i++) {
   modal_open[i].addEventListener('click', modalOpen.bind(this, i));

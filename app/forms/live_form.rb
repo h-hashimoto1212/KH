@@ -17,37 +17,42 @@ class LiveForm
 
   # attr_accessor :live, :detail
 
-  attr_accessor :title, :title_link, :description, :id,
-                :date, :open_time, :start_time, :ex_description, :place, :place_link,
-                :image
+  attr_accessor(
+    :live, :title, :title_link, :description, :id,
+    :details, :date, :open_time, :start_time, :ex_description, :place, :place_link,
+    :images, :image
+  )
+  #               :date, :open_time, :start_time, :ex_description, :place, :place_link,
+  #               :image
 
   validates :title, presence: true
 
-  def initialize(params = {})
-    if params[:id].present?
-      @live = Live.find(params[:id])
-      @detail = @live.details.first
-      @imager = @live.images.first
-      self.attributes = @live.attributes.except("id", "created_at", "updated_at")
-      self.attributes = @detail.attributes.except("id", "live_id", "created_at", "updated_at")
-      @open_time = @detail.open_time.strftime("%k:%M") if @detail.open_time.present?
-      @start_time = @detail.start_time.strftime("%k:%M") if @detail.start_time.present?
-      if @imager.present?
-        @image = @imager.image
-      end
-      self.attributes = params.to_hash
-    else
-      super(params)
+  def initialize(attr = {})
+    super
+    unless live.nil?
+      @title ||= live.title
+      @title_link ||= live.title_link
+      @description ||= live.description
     end
-    # @live = live
-    # @detail = detail
-    # @image = image
-    # super(attr)
+    @details ||= details
+    @images ||= images
+
+
   end
 
-  # def persisted?
-  #   @live.nil? ? false : @live.persisted?
-  # end
+  def details_attributes=(details_params)
+    @details ||= []
+    details_params.each do |_key,detail_params|
+      @details.push(LiveForm.new(detail_params))
+    end
+  end
+
+  def images_attributes=(images_params)
+    @images ||= []
+    images_params.each do |_key,image_params|
+      @images.push(LiveForm.new(image_params))
+    end
+  end
 
   def save
     if valid?
@@ -58,33 +63,29 @@ class LiveForm
     end
   end
 
-  def update
-    if valid?
-      update_form
-      true
-    else
-      false
-    end
-  end
-
   private
 
   def persist
-    live = Live.create(title: title, title_link: title_link, description: description)
-    live.details.create(date: date, open_time: open_time, start_time: start_time, ex_description: ex_description, place: place, place_link: place_link)
-    if image.present?
-      live.images.create(image: image)
+    ActiveRecord::Base.transaction do
+      @live.update!({
+        title: title, title_link: title_link, description: description,
+        details_attributes: build_details_attributes,
+        images_attributes: build_images_attributes
+      })
+    end
+
+  end
+
+  def build_details_attributes
+    details.map do |detail|
+      detail.as_json
     end
   end
 
-  def update_form
-    @live.update_attributes(title: title, title_link: title_link, description: description)
-    @detail.update_attributes(date: date, open_time: open_time, start_time: start_time, ex_description: ex_description, place: place, place_link: place_link)
-    if image.present?
-      if @imager.present?
-        @imager.update_attributes(image: image)
-      else
-        @live.images.create(image: image)
+  def build_images_attributes
+    unless images.nil?
+      images.map do |image|
+        image.as_json
       end
     end
   end
