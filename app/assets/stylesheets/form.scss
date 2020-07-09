@@ -18,6 +18,12 @@
         font-size: 1.2rem;
       }
     }
+    &.open_start{
+      display: flex;
+      .time{
+        width: 50%;
+      }
+    }
     input[type="text"]{
       width: 100%;
       font-size: 1.6rem;
@@ -36,7 +42,7 @@
       outline: none;
     }
     input[type="time"]{
-      width: 50%;
+      width: 90%;
       font-size: 1.6rem;
       outline: none;
     }
@@ -52,12 +58,12 @@
       justify-content: space-between;
       &-field{
         width: calc(50% - 10px);
-        label.add-btn{
+        position: relative;
+        .add-btn{
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          border: 1px solid #fff;
           min-height: 200px;
           svg{
             width: 2rem;
@@ -79,10 +85,13 @@
       .thumb{
         display: flex;
         overflow: hidden;
+        position: absolute;
         justify-content: center;
         align-items: center;
-        border: 1px solid #fff;
+        width: 100%;
         height: 200px;
+        border: 1px solid #fff;
+        background-color: transparent;
       }
       .btns{
         display: flex;
@@ -103,37 +112,45 @@
       }
     }
   }
+  .detail-area{
+    padding: 1rem 0;
+    margin: 2rem auto;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+
+  }
   .add-details{
-    @include pc {
-      width: 50%;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      &-btn{
-        max-width: 250px;
-        border: 1px solid #fff;
-        text-align: center;
-        border-radius: 100px;
-        overflow: hidden;
-        background-color: transparent;
-        width: 250px;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .add-btn{
+      border: 2px solid #fff;
+      text-align: center;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: transparent;
+      display: block;
+      color: #fff;
+      padding: 2px;
+      svg{
+        fill: #ffffff;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+      cursor: pointer;
+      @include pc {
+        font-size: 1.4rem;
+      }
+      @include sp {
+        font-size: calcvw(24);
+      }
+      @include pc {
         cursor: pointer;
-        @include pc {
-          font-size: 1.4rem;
-        }
-        @include sp {
-          font-size: calcvw(24);
-        }
-        display: block;
-        padding: 1rem;
-        color: #fff;
-        @include pc {
-          cursor: pointer;
-          transition: opacity .5s;
-          &:hover{
-            opacity: 0.7;
-          }
+        transition: opacity .5s;
+        &:hover{
+          opacity: 0.7;
         }
       }
     }
@@ -175,8 +192,8 @@
           border-radius: 100px;
           overflow: hidden;
           background-color: #fff;
-          width: 250px;
           cursor: pointer;
+          width: 100%;
           @include pc {
             font-size: 1.4rem;
           }
@@ -193,8 +210,8 @@
           text-align: center;
           border-radius: 100px;
           background-color: transparent;
-          width: 250px;
           color: #ffffff;
+          width: 100%;
           @include pc {
             font-size: 1.4rem;
           }

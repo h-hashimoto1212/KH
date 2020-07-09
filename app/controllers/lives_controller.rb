@@ -1,11 +1,9 @@
 class LivesController < ApplicationController
   before_action :set_tomorrow, only: [:index]
-  before_action :set_image_count
+  before_action :set_image_count, only: [:edit, :new]
 
   def index
     @lives = Live.eager_load(:details).order("details.date DESC")
-    # @past_lives = @lives.where("details.date < ?", @tomorrow).order("details.date DESC")
-    # @future_lives = @lives.where("details.date > ?", @tomorrow).order("details.date")
   end
 
   def show
@@ -21,9 +19,11 @@ class LivesController < ApplicationController
   def create
     @live = Live.new(live_params)
     if @live.save
+      flash[:success] = "投稿が保存されました【#{params[:title]}】"
       redirect_to action: 'index'
     else
-      flash.now[:alert] = 'unable to save'
+      flash.now[:alert] = '保存に失敗しました'
+      @live = Live.new(live_params)
       render :new
     end
   end
@@ -37,9 +37,11 @@ class LivesController < ApplicationController
   def update
     @live = Live.find(params[:id])
     if @live.update(update_live_params)
+      flash[:success] = "投稿が更新されました【#{params[:title]}】"
       redirect_to action: 'index'
     else
-      flash.now[:alert] = 'unable to save'
+      flash.now[:alert] = '保存に失敗しました'
+      @live = Live.find(update_live_params)
       render :edit
     end
   end
@@ -54,16 +56,16 @@ class LivesController < ApplicationController
     def live_params
       params.require(:live).permit(
         :title, :title_link, :description,
-        details_attributes:[:date, :open_time, :start_time, :ex_description, :place, :place_link],
-        images_attributes:[:file]
+        [details_attributes:[:date, :open_time, :start_time, :ex_description, :place, :place_link]],
+        [images_attributes:[:file]]
       )
     end
 
     def update_live_params
       params.require(:live).permit(
         :title, :title_link, :description,
-        [details_attributes:[:date, :open_time, :start_time, :ex_description, :place, :place_link, :_destroy, :id]],
-        [images_attributes:[:file, :_destroy, :id]]
+        details_attributes:[:date, :open_time, :start_time, :ex_description, :place, :place_link, :_destroy, :id],
+        images_attributes:[:file, :_destroy, :id]
       )
     end
 

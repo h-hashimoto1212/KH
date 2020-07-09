@@ -6,55 +6,50 @@
   = f.text_field :title_link
 .input-area
   .image-file
-    = f.fields_for :images, multiple: true do |img|
+    = f.fields_for :images do |img|
       .image-file-field
-        -if img.object.file.present?
+        %label 画像#{img.index + 1}
+        %label{for: "live_images_attributes_#{img.index}_file"}
+          = img.file_field :file, class: 'hidden-field image-input'
+          = img.check_box :_destroy, class: 'hidden-field destroy-check'
           .thumb
-            = image_tag img.object.file.url, height:200
-          .btns
-            %label.swap-btn
-              = img.file_field :file, class: 'hidden-field'
-              = embedded_svg("swap.svg", {})
-            .delete-btn{data:{id: img.index}}
-              = embedded_svg("x_btn.svg", {})
-        - else
-          %label.add-btn
-            = img.file_field :file, class: 'hidden-field'
+            -if img.object.file.present?
+              = image_tag img.object.file.url, height:200
+          .add-btn
             = embedded_svg("add.svg", {})
             %p 画像追加
-
-        -# = f.hidden_field :images, value: img.object.id
--# .input-area
--#   = f.label :image, '画像'
--#   = f.file_field :image
-  -# - if local_assigns[:edit_flag].present?
-  -#   = f.label :remove_image, '画像削除'
-  -#   = f.check_box :remove_image
-.input-area
+        .btns
+          %label.swap-btn{for: "live_images_attributes_#{img.index}_file"}
+            = embedded_svg("swap.svg", {})
+          .delete-btn
+            = embedded_svg("x_btn.svg", {})
+.input-area.description
   = f.label :description, '詳細'
   = f.text_area :description
-= f.fields_for :details, multiple: true do |detail|
-  .input-area
-    = detail.label :date, '開催日'
-    = detail.text_field :date , type: 'date'
-  .input-area
-    = detail.label :place, '開催地'
-    = detail.text_field :place
-  .input-area
-    = detail.label :place_link, 'リンク(開催地)'
-    = detail.text_field :place_link
-  .input-area
-    .time
-      = detail.label :open_time, 'Open'
-      = detail.text_field :open_time, type: 'time'
-    .time
-      = detail.label :start_time, 'Start'
-      = detail.text_field :start_time, type: 'time'
-  .input-area
-    = detail.label :ex_description, '追記'
-    = detail.text_field :ex_description
+.detail-area
+  = f.fields_for :details, multiple: true do |detail|
+    .input-area
+      = detail.label :date, '開催日'
+      = detail.text_field :date , type: 'date'
+    .input-area
+      = detail.label :place, '開催地'
+      = detail.text_field :place
+    .input-area
+      = detail.label :place_link, 'リンク(開催地)'
+      = detail.text_field :place_link
+    .input-area.open_start
+      .time
+        = detail.label :open_time, 'Open'
+        = detail.text_field :open_time, type: 'time'
+      .time
+        = detail.label :start_time, 'Start'
+        = detail.text_field :start_time, type: 'time'
+    .input-area
+      = detail.label :ex_description, '追記'
+      = detail.text_field :ex_description
 .add-details
-  .add-btn 追加
+  .add-btn
+    = embedded_svg("add.svg",{})
 
 .page-bottom-btns
   %ul.btns

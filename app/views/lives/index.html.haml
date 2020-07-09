@@ -16,7 +16,10 @@
             = live.title
         .item-date
           - live.details.each do |detail|
-            = detail.date.strftime("%Y/%m/%d(%a)") if detail.date.present?
+            - if detail.date.to_s != "9999-12-31"
+              = detail.date.strftime("%Y/%m/%d(%a)")
+            - else
+              日程未定
         %ul.item-thumbnails
           - if live.images.present?
             - live.images.each do |img|
