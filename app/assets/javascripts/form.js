@@ -50,3 +50,82 @@ for (i = 0 ; i < imageInput.length ; i++){
 
 ////////////////multiple days section
 
+const detailArea = document.getElementsByClassName('detail-area')[0];
+const detailAddButton = document.getElementsByClassName('add-details')[0].children[0];
+var deleteDetailButtons = document.getElementsByClassName('delete-details');
+var detailID = 0;
+
+function buildDetailField(i){
+  var html = `
+  <div class="detail-area-item" id="detail-${i}">
+    <div class="input-area">
+      <label for="live_details_attributes_${i}_date">開催日</label>
+      <input type="date" name="live[details_attributes][${i}][date]" id="live_details_attributes_${i}_date">
+    </div>
+    <div class="input-area">
+      <label for="live_details_attributes_${i}_place">開催地</label>
+      <input type="text" name="live[details_attributes][${i}][place]" id="live_details_attributes_${i}_place">
+    </div>
+    <div class="input-area">
+      <label for="live_details_attributes_${i}_place_link">リンク(開催地)</label>
+      <input type="text" name="live[details_attributes][${i}][place_link]" id="live_details_attributes_${i}_place_link">
+    </div>
+    <div class="input-area open_start">
+      <div class="time">
+        <label for="live_details_attributes_${i}_open_time">Open</label>
+        <input type="time" name="live[details_attributes][${i}][open_time]" id="live_details_attributes_${i}_open_time">
+      </div>
+      <div class="time">
+        <label for="live_details_attributes_${i}_start_time">Start</label>
+        <input type="time" name="live[details_attributes][${i}][start_time]" id="live_details_attributes_${i}_start_time">
+      </div>
+    </div>
+    <div class="input-area">
+      <label for="live_details_attributes_${i}_ex_description">追記</label>
+      <input type="text" name="live[details_attributes][${i}][ex_description]" id="live_details_attributes_${i}_ex_description">
+    </div>
+    <label class="delete-details">
+      <input name="live[details_attributes][${i}][_destroy]" type="hidden" value="0"><input class="hidden-field detail_delete" type="checkbox" value="1" name="live[details_attributes][${i}][_destroy]" id="live_details_attributes_${i}__destroy">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6 16.094l-4.157-4.104 4.1-4.141-1.849-1.849-4.105 4.159-4.156-4.102-1.833 1.834 4.161 4.12-4.104 4.157 1.834 1.832 4.118-4.159 4.143 4.102 1.848-1.849z"></path></svg>
+    </label>
+    <div class="line"></div>
+  </div>
+  `
+  return html;
+}
+function addDetailField(i){
+  detailArea.insertAdjacentHTML("beforeend",buildDetailField(i));
+  enableDeleteteButtons();
+}
+detailAddButton.addEventListener('click', function(){
+  detailID += 1;
+  addDetailField(detailID);
+  console.log(detailID);
+})
+
+function removeDetail(i){
+  document.getElementById(`live_details_attributes_${i}_date`).value = '';
+  document.getElementById(`live_details_attributes_${i}_place`).value = '';
+  document.getElementById(`live_details_attributes_${i}_place_link`).value = '';
+  document.getElementById(`live_details_attributes_${i}_open_time`).value = '';
+  document.getElementById(`live_details_attributes_${i}_start_time`).value = '';
+  document.getElementById(`live_details_attributes_${i}_ex_description`).value = '';
+  var formToDelete = document.getElementById(`detail-${i}`)
+  var destroyer = document.getElementById(`live_details_attributes_${i}__destroy`);
+  formToDelete.parentNode.removeChild(formToDelete);
+  destroyer.checked = true;
+  detailID -= 1;
+}
+
+function enableDeleteteButtons(){
+  for (i = 0 ; i < deleteDetailButtons.length ; i++){
+    deleteDetailButtons[i].index = i;
+    deleteDetailButtons[i].addEventListener('click', function(){
+      console.log(this.index);
+      removeDetail(this.index, detailID);
+    });
+  }
+}
+document.addEventListener('load', enableDeleteteButtons());
+
+

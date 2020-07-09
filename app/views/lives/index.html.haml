@@ -16,7 +16,7 @@
             = live.title
         .item-date
           - live.details.each do |detail|
-            - if detail.date.to_s != "9999-12-31"
+            - if detail.date.to_s.present?
               = detail.date.strftime("%Y/%m/%d(%a)")
             - else
               日程未定

@@ -107,17 +107,29 @@
           }
         }
       }
-      .hidden-field{
-        display: none;
-      }
     }
   }
   .detail-area{
     padding: 1rem 0;
-    margin: 2rem auto;
+    margin-top: 2rem;
     border-top: 1px solid #dddddd;
-    border-bottom: 1px solid #dddddd;
-
+    &-item{
+      border-bottom: 1px solid #dddddd;
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+  }
+  .delete-details{
+    display: flex;
+    margin: 2rem auto;
+    fill: #ffffff;
+    width: 24px;
+    @include pc{
+      cursor: pointer;
+      &:hover{
+        animation: blinker 1s linear infinite alternate;
+      }
+    }
   }
   .add-details{
     width: 50%;
@@ -223,5 +235,8 @@
         }
       }
     }
+  }
+  .hidden-field{
+    display: none;
   }
 }
