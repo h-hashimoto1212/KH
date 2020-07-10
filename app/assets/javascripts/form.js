@@ -51,9 +51,10 @@ for (i = 0 ; i < imageInput.length ; i++){
 ////////////////multiple days section
 
 const detailArea = document.getElementsByClassName('detail-area')[0];
+var detailItem = document.getElementsByClassName('detail-area-item');
 const detailAddButton = document.getElementsByClassName('add-details')[0].children[0];
 var deleteDetailButtons = document.getElementsByClassName('delete-details');
-var detailID = 0;
+var detailID;
 
 function buildDetailField(i){
   var html = `
@@ -95,7 +96,7 @@ function buildDetailField(i){
 }
 function addDetailField(i){
   detailArea.insertAdjacentHTML("beforeend",buildDetailField(i));
-  enableDeleteteButtons();
+  enableDeleteteAndAdd();
 }
 detailAddButton.addEventListener('click', function(){
   detailID += 1;
@@ -110,22 +111,24 @@ function removeDetail(i){
   document.getElementById(`live_details_attributes_${i}_open_time`).value = '';
   document.getElementById(`live_details_attributes_${i}_start_time`).value = '';
   document.getElementById(`live_details_attributes_${i}_ex_description`).value = '';
-  var formToDelete = document.getElementById(`detail-${i}`)
+  var formToDelete = document.getElementById(`detail-${i}`);
   var destroyer = document.getElementById(`live_details_attributes_${i}__destroy`);
-  formToDelete.parentNode.removeChild(formToDelete);
   destroyer.checked = true;
-  detailID -= 1;
+  formToDelete.style.transform = "scaleY(0)";
+  formToDelete.addEventListener('transitionend', function(){
+    formToDelete.classList.add('hidden');
+  })
 }
 
-function enableDeleteteButtons(){
+function enableDeleteteAndAdd(){
   for (i = 0 ; i < deleteDetailButtons.length ; i++){
     deleteDetailButtons[i].index = i;
     deleteDetailButtons[i].addEventListener('click', function(){
-      console.log(this.index);
-      removeDetail(this.index, detailID);
+      removeDetail(this.index);
     });
   }
+  detailID = detailItem.length - 1;
 }
-document.addEventListener('load', enableDeleteteButtons());
+document.addEventListener('load', enableDeleteteAndAdd());
 
 
