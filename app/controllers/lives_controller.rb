@@ -1,6 +1,8 @@
 class LivesController < ApplicationController
   before_action :set_tomorrow, only: [:index]
   before_action :set_image_count, only: [:edit, :new]
+  before_action :basic_auth if Rails.env.production?
+  protect_from_forgery with: :exception
 
   def index
     @lives = Live.eager_load(:details).order("details.date DESC")
@@ -67,6 +69,12 @@ class LivesController < ApplicationController
         details_attributes:[:date, :open_time, :start_time, :ex_description, :place, :place_link, :_destroy, :id],
         images_attributes:[:file, :_destroy, :id]
       )
+    end
+
+    def basic_auth
+      authenticate_or_request_with_http_basic do |username, password|
+        username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"]
+      end
     end
 
     def set_image_count
