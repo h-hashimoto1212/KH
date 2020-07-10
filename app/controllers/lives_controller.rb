@@ -2,7 +2,6 @@ class LivesController < ApplicationController
   before_action :set_tomorrow, only: [:index]
   before_action :set_image_count, only: [:edit, :new]
   before_action :basic_auth if Rails.env.production?
-  protect_from_forgery with: :exception
 
   def index
     @lives = Live.eager_load(:details).order("details.date DESC")
