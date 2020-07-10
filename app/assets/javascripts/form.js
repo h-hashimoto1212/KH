@@ -96,7 +96,7 @@ function buildDetailField(i){
 }
 function addDetailField(i){
   detailArea.insertAdjacentHTML("beforeend",buildDetailField(i));
-  enableDeleteteAndAdd();
+  initializeDeleteteAndAdd();
 }
 detailAddButton.addEventListener('click', function(){
   detailID += 1;
@@ -120,7 +120,7 @@ function removeDetail(i){
   })
 }
 
-function enableDeleteteAndAdd(){
+function initializeDeleteteAndAdd(){
   for (i = 0 ; i < deleteDetailButtons.length ; i++){
     deleteDetailButtons[i].index = i;
     deleteDetailButtons[i].addEventListener('click', function(){
@@ -129,6 +129,4 @@ function enableDeleteteAndAdd(){
   }
   detailID = detailItem.length - 1;
 }
-document.addEventListener('load', enableDeleteteAndAdd());
-
-
+document.addEventListener('load', initializeDeleteteAndAdd());
