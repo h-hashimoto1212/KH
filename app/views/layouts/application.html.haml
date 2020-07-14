@@ -10,4 +10,5 @@
     = javascript_include_tag 'application', defer: 'defer'
     %script{:crossorigin => "anonymous", :src => "https://kit.fontawesome.com/f813a8c3c0.js"}
   %body
+    = render partial: 'layouts/notification'
     = yield

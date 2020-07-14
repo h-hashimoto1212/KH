@@ -11,7 +11,7 @@
   opacity: 0;
 }
 .fadein{
-  animation: fadein 1s forwards;
+  animation: fadeIn 1s forwards;
 }
 
 #title_bg{
@@ -85,7 +85,7 @@ header{
   nav
   {
     margin-left: auto;
-    animation: fadein 1s;
+    animation: fadeIn 1s;
     ul{
       display: flex;
       list-style-type: none;
@@ -196,4 +196,16 @@ main{
   // margin-top: 50vh;
   z-index: -1;
   position: absolute;
+}
+
+.flash{
+  position: fixed;
+  background: #ffffff;
+  color: #333333;
+  width: 100%;
+  text-align: center;
+  animation: fadeOut;
+  animation-duration: 1s;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;
 }
