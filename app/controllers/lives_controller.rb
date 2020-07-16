@@ -20,7 +20,7 @@ class LivesController < ApplicationController
   def create
     @live = Live.new(live_params)
     if @live.save
-      flash[:success] = "投稿が保存されました【#{params[:title]}】"
+      flash[:success] = "投稿が保存されました【#{@live.title}】"
       redirect_to action: 'index'
     else
       flash.now[:alert] = '保存に失敗しました'
@@ -38,7 +38,7 @@ class LivesController < ApplicationController
   def update
     @live = Live.find(params[:id])
     if @live.update(update_live_params)
-      flash[:success] = "投稿が更新されました【#{params[:title]}】"
+      flash[:success] = "投稿が更新されました【#{@live.title}】"
       redirect_to action: 'index'
     else
       flash.now[:alert] = '保存に失敗しました'

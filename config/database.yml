@@ -52,7 +52,7 @@ production:
   adapter: mysql2
   pool: 5
   timeout: 5000
-  username: <%= Rails.application.credentials.gae[:db_user] %>
-  password: <%= Rails.application.credentials.gae[:db_password] %>
+  username: <%= Rails.application.credentials.gcp[:db_user] %>
+  password: <%= Rails.application.credentials.gcp[:db_password] %>
   database: KotaHashimoto_production
   socket:   /cloudsql/kotahashimotohp:asia-northeast1:kotahashimoto-db 

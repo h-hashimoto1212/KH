@@ -10,17 +10,17 @@ function defaultParallax(){
 }
 window.addEventListener('scroll', defaultParallax);
 
-const bgBlack = document.getElementsByClassName('bg_black')[0];
-const bgHeight = bgBlack.offsetHeight;
+// const bgBlack = document.getElementsByClassName('bg_black')[0];
+// const bgHeight = bgBlack.offsetHeight;
 
-function bgParallax(){
-  const rate = 0.2;
-  var scrollAmount = window.pageYOffset;
-  var bgScroll = -(scrollAmount * rate);
-  bgBlack.style.height = bgHeight - bgScroll + 'px';
-  bgBlack.style.transform = 'translateY('+bgScroll+'px)';
-}
-window.addEventListener('scroll', bgParallax);
+// function bgParallax(){
+//   const rate = 0.2;
+//   var scrollAmount = window.pageYOffset;
+//   var bgScroll = -(scrollAmount * rate);
+//   bgBlack.style.height = bgHeight - bgScroll + 'px';
+//   bgBlack.style.transform = 'translateY('+bgScroll+'px)';
+// }
+// window.addEventListener('scroll', bgParallax);
 
 // function newsParallax(){
 //   var para_text = document.querySelectorAll('.paratext');
