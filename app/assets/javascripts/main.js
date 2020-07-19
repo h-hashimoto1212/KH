@@ -6,14 +6,14 @@ function wait(waitMsec) {
 const mainPage = document.getElementsByClassName('main_page');
 
 if (mainPage.length > 0){
-  const loader = document.getElementById('loader');
-  const title = document.getElementById('title_bg');
-  const contents = document.getElementsByClassName('contents')[0];
+  var loader = document.getElementById('loader');
+  var title = document.getElementById('title_bg');
+  var contents = document.getElementsByClassName('contents')[0];
 
   function loaded(){
     loader.classList.add('hidden');
     title.classList.add('fadeout');
-    const fout_title = document.querySelector('#title_bg.fadeout');
+    var fout_title = document.querySelector('#title_bg.fadeout');
     fout_title.addEventListener('transitionend', function(){
       title.classList.add('hidden');
     });
@@ -22,9 +22,9 @@ if (mainPage.length > 0){
 
   window.addEventListener('load', loaded);
 
-  const header = document.getElementsByTagName('header')[0];
-  const header_left = document.getElementsByClassName('header_left')[0];
-  const main = document.getElementsByTagName('main')[0];
+  var header = document.getElementsByTagName('header')[0];
+  var header_left = document.getElementsByClassName('header_left')[0];
+  var main = document.getElementsByTagName('main')[0];
 
   // function headerFix(){
   //   var scrPos = window.pageYOffset;
@@ -63,22 +63,22 @@ if (mainPage.length > 0){
     requestAnimationFrame(animation);
   }
 
-  const home_button = document.getElementsByClassName('home_button')[0];
+  var home_button = document.getElementsByClassName('home_button')[0];
   home_button.addEventListener('click', function(){
     smoothScroll('.top', 500);
   });
 
-  const news_button = document.getElementsByClassName('news_button')[0];
+  var news_button = document.getElementsByClassName('news_button')[0];
   news_button.addEventListener('click', function(){
     smoothScroll('.news', 500);
   });
 
-  const about_button = document.querySelector('.about_button');
+  var about_button = document.querySelector('.about_button');
   about_button.addEventListener('click', function(){
     smoothScroll('.about', 500);
   });
 
-  const works_button = document.querySelector('.works_button');
+  var works_button = document.querySelector('.works_button');
   works_button.addEventListener('click', function(){
     smoothScroll('.works', 500);
   });

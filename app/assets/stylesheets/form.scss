@@ -209,16 +209,15 @@
           background-color: #fff;
           cursor: pointer;
           width: 100%;
+          display: block;
+          padding: 1rem;
+          -webkit-appearance: none;
           @include pc {
             font-size: 1.4rem;
           }
           @include sp {
             font-size: calcvw(24);
           }
-          display: block;
-          background-color: #fff;
-          padding: 1rem;
-          color: #333;
         }
         .cancel{
           border: 1px solid #fff;

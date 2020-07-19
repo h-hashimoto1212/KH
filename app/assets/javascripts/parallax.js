@@ -1,6 +1,6 @@
 
 function defaultParallax(){
-  const parallax = document.querySelectorAll('.parallax');
+  var parallax = document.querySelectorAll('.parallax');
   var scrPos = window.pageYOffset;
   for(i = 0; i < parallax.length; i++){
     var posX = scrPos * parallax[i].dataset.ratex;

@@ -2,7 +2,7 @@ function liveForm(){
   
   /////////image and preview section
 
-  const deleteImageButtons = document.getElementsByClassName('delete-btn');
+  var deleteImageButtons = document.getElementsByClassName('delete-btn');
 
   function removeImage(i){
     var inputToDelete = document.getElementById(`live_images_attributes_${i}_file`);
@@ -19,8 +19,8 @@ function liveForm(){
     });
   }
 
-  const previewContainer = document.getElementsByClassName('thumb');
-  const imageInput = document.getElementsByClassName('image-input');
+  var previewContainer = document.getElementsByClassName('thumb');
+  var imageInput = document.getElementsByClassName('image-input');
 
 
   function buildHTML(image){
@@ -51,9 +51,9 @@ function liveForm(){
 
   ////////////////multiple days section
 
-  const detailArea = document.getElementsByClassName('detail-area')[0];
+  var detailArea = document.getElementsByClassName('detail-area')[0];
   var detailItem = document.getElementsByClassName('detail-area-item');
-  const detailAddButton = document.getElementsByClassName('add-details')[0].children[0];
+  var detailAddButton = document.getElementsByClassName('add-details')[0].children[0];
   var deleteDetailButtons = document.getElementsByClassName('delete-details');
   var detailID;
 
