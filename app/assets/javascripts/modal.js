@@ -5,13 +5,11 @@ const modal_item = document.getElementsByClassName('modal_item')[0];
 
 function modalOpen(e){
   modal.style.display = 'flex';
-  console.log(modal_open[e].dataset.live)
   if (modal_open[e].dataset.target) {
     var movID = modal_open[e].dataset.target;
     var width = modal_item.clientWidth;
     var height = width * (9/16)
-    console.log(width)
-    modal_item.innerHTML = `<iframe width="${width}" height="${height}" src="https://www.youtube.com/embed/'${movID}'?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>`
+    modal_item.innerHTML = `<iframe width="${width}" height="${height}" src="https://www.youtube.com/embed/${movID}?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>`
   }
   if (modal_open[e].dataset.live == "true") {
     var liveID = modal_open[e].dataset.id;

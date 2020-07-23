@@ -1,0 +1,466 @@
+/***** FONTS *****/
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Medium");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Yu Gothic";
+  src: local("Yu Gothic Bold");
+  font-weight: bold;
+}
+
+html {
+  color: #ffffff;
+  word-wrap: break-word;
+  font-size: 62.5%;
+}
+
+html body {
+  font-size: 1.6rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Yu Gothic", YuGothic, sans-serif;
+}
+
+/***** /FONTS *****/
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@-webkit-keyframes blinker {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blinker {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@media print, screen and (min-width: 769px) {
+  .live_form .input-area {
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+
+.live_form .input-area label {
+  display: block;
+  margin-bottom: .5rem;
+}
+
+@media print, screen and (min-width: 769px) {
+  .live_form .input-area label {
+    font-size: 1.4rem;
+  }
+}
+
+@media print, screen and (max-width: 768px) {
+  .live_form .input-area label {
+    font-size: 1.2rem;
+  }
+}
+
+.live_form .input-area.open_start {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.live_form .input-area.open_start .time {
+  width: 50%;
+}
+
+.live_form .input-area input[type="text"] {
+  width: 100%;
+  font-size: 1.6rem;
+  outline: none;
+}
+
+.live_form .input-area textarea {
+  width: 100%;
+  height: 20em;
+  font-size: 1.6rem;
+  outline: none;
+  resize: none;
+}
+
+.live_form .input-area input[type="date"] {
+  width: 50%;
+  font-size: 1.6rem;
+  outline: none;
+}
+
+.live_form .input-area input[type="time"] {
+  width: 90%;
+  font-size: 1.6rem;
+  outline: none;
+}
+
+.live_form .input-area + .input-area {
+  margin-top: 3rem;
+}
+
+.live_form .input-area input[type="file"] {
+  outline: none;
+}
+
+.live_form .input-area .image-file {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.live_form .input-area .image-file-field {
+  width: calc(50% - 10px);
+  position: relative;
+}
+
+.live_form .input-area .image-file-field .add-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 200px;
+}
+
+.live_form .input-area .image-file-field .add-btn svg {
+  width: 2rem;
+  margin: 10px;
+  fill: #ffffff;
+}
+
+@media print, screen and (min-width: 769px) {
+  .live_form .input-area .image-file-field .add-btn {
+    cursor: pointer;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+  }
+  .live_form .input-area .image-file-field .add-btn:hover {
+    background-color: #333333;
+  }
+  .live_form .input-area .image-file-field .add-btn:hover svg {
+    -webkit-animation: blinker 1s linear infinite alternate;
+            animation: blinker 1s linear infinite alternate;
+  }
+}
+
+.live_form .input-area .image-file .thumb {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  position: absolute;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 200px;
+  border: 1px solid #fff;
+  background-color: transparent;
+}
+
+.live_form .input-area .image-file .btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-top: .5rem;
+}
+
+.live_form .input-area .image-file .btns .swap-btn svg, .live_form .input-area .image-file .btns .delete-btn svg {
+  width: 2em;
+  fill: #ffffff;
+}
+
+.live_form .input-area .image-file .btns .swap-btn:hover, .live_form .input-area .image-file .btns .delete-btn:hover {
+  -webkit-animation: blinker 1s linear infinite alternate;
+          animation: blinker 1s linear infinite alternate;
+}
+
+.live_form .detail-area {
+  padding: 1rem 0;
+  margin-top: 2rem;
+  border-top: 1px solid #dddddd;
+}
+
+.live_form .detail-area-item {
+  border-bottom: 1px solid #dddddd;
+  margin-bottom: 1rem;
+  width: 100%;
+  -webkit-animation: fadeIn .5s;
+          animation: fadeIn .5s;
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+.live_form .delete-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 2rem auto;
+  fill: #ffffff;
+  width: 24px;
+}
+
+@media print, screen and (min-width: 769px) {
+  .live_form .delete-details {
+    cursor: pointer;
+  }
+  .live_form .delete-details:hover {
+    -webkit-animation: blinker 1s linear infinite alternate;
+            animation: blinker 1s linear infinite alternate;
+  }
+}
+
+.live_form .add-details {
+  width: 50%;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.live_form .add-details .add-btn {
+  border: 2px solid #fff;
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: transparent;
+  display: block;
+  color: #fff;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.live_form .add-details .add-btn svg {
+  fill: #ffffff;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@media print, screen and (min-width: 769px) {
+  .live_form .add-details .add-btn {
+    font-size: 1.4rem;
+  }
+}
+
+@media print, screen and (max-width: 768px) {
+  .live_form .add-details .add-btn {
+    font-size: 3.2vw;
+  }
+}
+
+@media print, screen and (min-width: 769px) {
+  .live_form .add-details .add-btn {
+    cursor: pointer;
+    -webkit-transition: opacity .5s;
+    transition: opacity .5s;
+  }
+  .live_form .add-details .add-btn:hover {
+    opacity: 0.7;
+  }
+}
+
+@media print, screen and (min-width: 769px) {
+  .live_form .page-bottom-btns {
+    padding-bottom: 4rem;
+  }
+}
+
+@media print, screen and (max-width: 768px) {
+  .live_form .page-bottom-btns {
+    padding-bottom: 5.33333vw;
+  }
+}
+
+.live_form .page-bottom-btns .btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media print, screen and (min-width: 769px) {
+  .live_form .page-bottom-btns .btns {
+    margin-top: 8rem;
+  }
+}
+
+@media print, screen and (max-width: 768px) {
+  .live_form .page-bottom-btns .btns {
+    margin-top: 16vw;
+  }
+}
+
+.live_form .page-bottom-btns .btns .btn {
+  width: 40%;
+  max-width: 250px;
+}
+
+@media print, screen and (min-width: 769px) {
+  .live_form .page-bottom-btns .btns .btn {
+    cursor: pointer;
+    -webkit-transition: opacity .5s;
+    transition: opacity .5s;
+  }
+  .live_form .page-bottom-btns .btns .btn:hover {
+    opacity: 0.7;
+  }
+}
+
+.live_form .page-bottom-btns .btns .btn:nth-child(2) {
+  margin-left: 20px;
+}
+
+.live_form .page-bottom-btns .btns .btn .submit {
+  border: 1px solid #fff;
+  color: #333;
+  text-align: center;
+  border-radius: 100px;
+  overflow: hidden;
+  background-color: #fff;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  padding: 1rem;
+  -webkit-appearance: none;
+}
+
+@media print, screen and (min-width: 769px) {
+  .live_form .page-bottom-btns .btns .btn .submit {
+    font-size: 1.4rem;
+  }
+}
+
+@media print, screen and (max-width: 768px) {
+  .live_form .page-bottom-btns .btns .btn .submit {
+    font-size: 3.2vw;
+  }
+}
+
+.live_form .page-bottom-btns .btns .btn .cancel {
+  border: 1px solid #fff;
+  text-align: center;
+  border-radius: 100px;
+  background-color: transparent;
+  color: #ffffff;
+  width: 100%;
+  display: block;
+  padding: 1rem;
+}
+
+@media print, screen and (min-width: 769px) {
+  .live_form .page-bottom-btns .btns .btn .cancel {
+    font-size: 1.4rem;
+  }
+}
+
+@media print, screen and (max-width: 768px) {
+  .live_form .page-bottom-btns .btns .btn .cancel {
+    font-size: 3.2vw;
+  }
+}
+
+.live_form .hidden-field {
+  display: none;
+}
+/*# sourceMappingURL=form.css.map */

@@ -6,21 +6,21 @@ function wait(waitMsec) {
 const mainPage = document.getElementsByClassName('main_page');
 
 if (mainPage.length > 0){
-  var loader = document.getElementById('loader');
-  var title = document.getElementById('title_bg');
-  var contents = document.getElementsByClassName('contents')[0];
+  // var loader = document.getElementById('loader');
+  // var title = document.getElementById('title_bg');
+  // var contents = document.getElementsByClassName('contents')[0];
 
-  function loaded(){
-    loader.classList.add('hidden');
-    title.classList.add('fadeout');
-    var fout_title = document.querySelector('#title_bg.fadeout');
-    fout_title.addEventListener('transitionend', function(){
-      title.classList.add('hidden');
-    });
-  }
-  // setTimeout(loaded, 1000);
+  // function loaded(){
+  //   loader.classList.add('hidden');
+  //   title.classList.add('fadeout');
+  //   var fout_title = document.querySelector('#title_bg.fadeout');
+  //   fout_title.addEventListener('transitionend', function(){
+  //     title.classList.add('hidden');
+  //   });
+  // }
 
-  window.addEventListener('load', loaded);
+
+  // window.addEventListener('load', loaded);
 
   var header = document.getElementsByTagName('header')[0];
   var header_left = document.getElementsByClassName('header_left')[0];
@@ -47,7 +47,7 @@ if (mainPage.length > 0){
   function smoothScroll(target, duration){
     var target = document.querySelector(target);
     var targetPos = target.getBoundingClientRect().top;
-    var startPos = window.pageYOffset - header.offsetHeight;
+    var startPos = window.pageYOffset;
     var distance = targetPos;
     var startTime = null;
     function animation(currentTime,){

@@ -1,3 +1,5 @@
+@import 'mixin';
+
 /***** FONTS *****/
 @font-face {
   font-family: "Yu Gothic";
@@ -10,7 +12,7 @@
   font-weight: bold;
 }
 html{
-  color: #fff;
+  color: $text_color1;
   word-wrap: break-word;
   font-size: 62.5%;
   body{
