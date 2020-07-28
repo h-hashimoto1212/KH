@@ -96,6 +96,7 @@ body{
         list-style-type: none;
         transition-duration: 0.5s;
         li{
+          position: relative;
           &:nth-child(1){
             transform: rotate(-3deg);
           }
@@ -109,8 +110,7 @@ body{
             transform: rotate(3deg);
           }
           &:hover{
-            transform: scale(1.2);
-            animation: blinker 1s ease-out;
+            transform: scale(1.2) rotate(0);
             transition: .5s all;
             cursor: pointer;
           }
@@ -129,6 +129,25 @@ body{
             }
             &:not(:last-child){
               margin-right: 10px;
+            }
+          }
+          &.current{
+            pointer-events: none;
+            transform: scale(1.2) rotate(0);
+            &:before{
+              content: '';
+              position: absolute;
+              bottom: -2px;
+              left: 0;
+              height: 1px;
+              width: 100%;
+              background-color: #5c5c5c;
+            }
+            svg{
+              path{
+                fill: #5c5c5c;
+              }
+
             }
           }
         }

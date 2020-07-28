@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+  
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body{
+    position: relative;
+  }
+  #op{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    pointer-events: none;
+  }
+  #op .op-top,
+  #op .op-bottom{
+    height: calc((100% - 10px)/2);
+    background-color: #000;
+  }
+  #op .op-mid{
+    height: 10px;
+    position: relative;
+  }
+  #op .op-mid::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    animation: loadingBar 3s ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  #op .op-top{
+    animation: fadeUp 1s ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: 3s;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: #fff;
+    font-size: 22px;
+  }
+    #op .op-bottom{
+    animation: fadeDown 1s ease-in-out;
+    animation-fill-mode: forwards;
+    animation-delay: 3s;
+  }
+  #content{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+  }
+  #content p{
+    margin: auto;
+  }
+</style>
+<body>
+  <div id="op">
+    <div class="op-top"><p>PLEASE STAND BY</p></div>
+    <div class="op-mid"></div>
+    <div class="op-bottom"></div>
+  </div>
+  <div id="content">
+    <p>hello!</p>
+  </div>
+</body>
+</html>

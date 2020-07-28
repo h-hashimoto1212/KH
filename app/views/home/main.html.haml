@@ -1,3 +1,9 @@
+.op
+  .op-top
+  .op-mid
+  .op-bottom
+  .op-logo
+    = embedded_svg("kh_logo.svg", {class: 'title_logo'})
 .main_page
   .top
   .modal
@@ -10,7 +16,7 @@
       = embedded_svg("kh_logo.svg", {class: 'header_logo home_button'})
       %nav
         %ul
-          %li.about_button
+          %li.about_button.current
             = embedded_svg("about.svg", {})
           %li.news_button
             = embedded_svg("schedule.svg", {})
