@@ -181,31 +181,44 @@ body{
     .slides{
       .slide-1{
         height: 100vh;
+        width: 100%;
         margin: 0 auto;
         position: relative;
         @include pc{
-          width: 80%;
+          width: 90%;
         }
         @include sp{
           width: 100%;
         }
         img{
           position: absolute;
-          left: -10%;
+          left: 0;
           top: 20%;
           background-size: contain;
           mix-blend-mode: lighten;
           transform: rotate(30.25deg);
+          height: 600px;
+          width: 600px;
         }
         &_text{
           position: absolute;
           top: 30%;
           right: 0;
+          width: 30%;
           font-family: 'Noto Sans';
+          text-align: right;
+          display: flex;
+          flex-direction: column;
+
           span{
             font-weight: bold;
             font-size: 4rem;
             line-height: 5.5rem;
+            letter-spacing: .2rem;
+          }
+          p{
+            font-size: 1.8rem;
+            line-height: 2rem;
           }
         }
       }
