@@ -68,13 +68,13 @@
           svg{
             width: 2rem;
             margin: 10px;
-            fill: #ffffff;
+            fill: $text_color1;
           }
           @include pc{
             cursor: pointer;
             transition: all .5s;
             &:hover{
-              background-color: #333333;
+              background-color: $primal_color;
               svg{
                 animation: blinker 1s linear infinite alternate;
               }
@@ -100,7 +100,7 @@
         .swap-btn, .delete-btn{
           svg{
             width: 2em;
-            fill: #ffffff;
+            fill: $text_color1;
           }
           &:hover{
             animation: blinker 1s linear infinite alternate;
@@ -125,7 +125,7 @@
   .delete-details{
     display: flex;
     margin: 2rem auto;
-    fill: #ffffff;
+    fill: $text_color1;
     width: 24px;
     @include pc{
       cursor: pointer;
@@ -150,7 +150,7 @@
       color: #fff;
       padding: 2px;
       svg{
-        fill: #ffffff;
+        fill: $text_color1;
         width: 1.5rem;
         height: 1.5rem;
       }
@@ -224,7 +224,7 @@
           text-align: center;
           border-radius: 100px;
           background-color: transparent;
-          color: #ffffff;
+          color: $text_color1;
           width: 100%;
           @include pc {
             font-size: 1.4rem;

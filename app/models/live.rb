@@ -4,4 +4,5 @@ class Live < ApplicationRecord
   accepts_nested_attributes_for :images, allow_destroy: true, reject_if: proc { |attributes| attributes['file'].blank? }
   accepts_nested_attributes_for :details, allow_destroy: true
   validates :title, presence: true
+  # acts_as_taggable
 end

@@ -41,7 +41,7 @@ body{
       svg{
         margin-right: 5px;
         margin-left: -1em;
-        fill: #ffffff;
+        fill: $text_color1;
         transition: fill .5s;
         @include pc {
           height: 1.4rem;
@@ -51,7 +51,7 @@ body{
         }
       }
       a{
-        color: #fff;
+        color: $text_color1;
         display: flex;
         justify-content: center;
         width: 100%;
@@ -143,7 +143,7 @@ body{
               text-overflow: ellipsis;
               overflow: hidden;
               a{
-                color: #fff;
+                color: $text_color1;
               }
             }
             &-date{
@@ -241,7 +241,7 @@ body{
                 }
                 svg{
                   width: 100%;
-                  fill: #fff;
+                  fill: $text_color1;
                 }
                 &:nth-child(2){
                   @include pc {

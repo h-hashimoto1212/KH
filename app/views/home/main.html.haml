@@ -1,82 +1,37 @@
+.op
+  .op-top
+  .op-mid
+  .op-bottom
+  .op-logo
+    = embedded_svg("kh_logo.svg", {class: 'title_logo'})
 .main_page
-  .top /
-  #title_bg
-    .logo
-      = image_tag 'guitar1.svg', alt: '', height: '50px'
-      %h1 KH
-    #loader loading
+  .top
   .modal
     .modal_content
       .modal_close
         = embedded_svg("x_btn.svg", {})
       .modal_item
-  .contents
-    %section.bg_video
-      = video_tag 'W0Enw7zhD5NQDbJg.mp4', autoplay: true, loop: true, muted: true, playsinline: true
+  .wrapper
     %header
-      .header_left
-        .logo
-          = image_tag 'guitar1.svg', alt: '', height: '50px'
-        .header_left_title
-          %h1
-            Kota Hashimoto
-            %span Official Website
+      = embedded_svg("kh_logo.svg", {class: 'header_logo home_button'})
       %nav
         %ul
-          %li
-            %a.home_button{:href => "javascript:void(0);"} home
-          %li
-            %a.news_button{:href => "javascript:void(0);"} news
-          %li
-            %a.about_button{:href => "javascript:void(0);"} about
-          %li
-            %a.works_button{:href => "javascript:void(0);"} works
+          %li.about_button.current
+            = embedded_svg("about.svg", {})
+          %li.news_button
+            = embedded_svg("schedule.svg", {})
+          %li.works_button
+            = embedded_svg("works.svg", {})
+          %li.contact_button
+            = embedded_svg("contact.svg", {})
     %main
-      .bg_black
-      .home
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-      .news
-        %h2 News
-        .lives
-          %h2 Live Information
-          .lives-tabs
-            .future.selected UPCOMING
-            .past PAST
-          .lives-future
-            = render partial: 'home/lives', locals:{lives: @future_lives}
-          .lives-past.hidden
-            = render partial: 'home/lives', locals:{lives: @past_lives}
-      .about
-        %h2 About
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-        %p テキストテキストテキスト
-      .works
-        %h2 Works
-        %p.modal_open{"data-target": "wGWlopL2Ffo"}
-          = image_tag 'http://img.youtube.com/vi/wGWlopL2Ffo/hqdefault.jpg'
-        %p.modal_open{"data-target": "8I_ZV_BLOHU"}
-          = image_tag 'http://img.youtube.com/vi/8I_ZV_BLOHU/hqdefault.jpg'
-        %p.modal_open{"data-target": "G4DZyQw2HZs"}
-          = image_tag 'http://img.youtube.com/vi/G4DZyQw2HZs/hqdefault.jpg'
-      = render partial: 'home/inquiry_form'
+      .slides
+        .slide-1
+          = image_tag 'S__22896684.jpg', alt: ''
+          .slide-1_text
+            %span Versatility
+            %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit officia vel sit id saepe voluptates?
+
     %footer
       = link_to('https://twitter.com/kota_h0307', target: :_blank) do
         %i.fab.fa-twitter
@@ -84,4 +39,4 @@
         %i.fab.fa-instagram
       = link_to('https://www.facebook.com/kota.hashimoto.79', target: :_blank) do
         %i.fab.fa-facebook-square
-      %p ©Kota Hashimoto all rights reserved.
+      %p ©2020 Kota Hashimoto

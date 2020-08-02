@@ -28,3 +28,66 @@
     opacity: 1;
   }
 }
+
+@keyframes spin{
+  0% { 
+    transform: rotate(0deg); 
+  }
+  100% {
+    transform: rotate(360deg); 
+  }
+}
+@keyframes loadingBar {
+  0%{
+    transform: translateX(0);
+  }
+  30%{
+    transform: translateX(10%);
+  }
+  50%{
+    transform: translateX(35%);
+  }
+  100%{
+    transform: translateX(100%);
+  }
+}
+@keyframes fadeUp {
+  from{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to{
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+@keyframes fadeDown {
+  from{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to{
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+@keyframes fadeLogo{
+  from{
+    opacity: 1;
+    // transform: translate(-50%, -50%) scale(1);
+  }
+  to{
+    opacity: 0;
+    // transform: translate(-130%, -200%) scale(0.3);
+  }
+}
+@keyframes wiggle{
+  0% { transform:rotate(0) }
+  1.78571% { transform:rotate(-3deg) }
+  3.57143% { transform:rotate(0) }
+  5.35714% { transform:rotate(-5deg) }
+  7.14286% { transform:rotate(0) }
+  // 8.92857% { transform:rotate(-2deg) }
+  // 10.71429% { transform:rotate(0) }
+  100% { transform:rotate(0) }
+}
